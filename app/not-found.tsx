@@ -1,0 +1,35 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { Home, Phone } from "lucide-react";
+import { businessData } from "@/content/business";
+
+export default function NotFound() {
+  return (
+    <div className="min-h-[70vh] flex items-center justify-center py-20 px-4 bg-slate-50">
+      <div className="max-w-md w-full text-center">
+        <span className="text-6xl sm:text-7xl font-extrabold text-primary-600 font-display block mb-4">
+          404
+        </span>
+        <h1 className="text-2xl sm:text-3xl font-bold text-navy-950 mb-3">
+          Page Not Found / الصفحة غير موجودة
+        </h1>
+        <p className="text-sm text-navy-600 mb-8 leading-relaxed">
+          The dental care page or service you are searching for does not exist or has been relocated.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <Link href="/">
+            <Button size="md" icon={<Home className="w-4 h-4" />}>
+              Return Home / الرئيسية
+            </Button>
+          </Link>
+          <Link href={`tel:${businessData.contact.phones[0]}`}>
+            <Button variant="secondary" size="md" icon={<Phone className="w-4 h-4" />}>
+              Call Front Desk
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
