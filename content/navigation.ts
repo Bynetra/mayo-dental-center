@@ -21,7 +21,7 @@ export const mainNavItems: NavItem[] = [
   {
     id: "about",
     href: "/about",
-    label: { en: "About & Dr. Dixon", ar: "عن المركز والطبيب" },
+    label: { en: "About", ar: "من نحن" },
   },
   {
     id: "patient-info",

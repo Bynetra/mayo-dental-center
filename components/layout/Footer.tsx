@@ -172,6 +172,9 @@ export function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300">
           <p>{businessData.name[locale]} © {new Date().getFullYear()}. All rights reserved.</p>
           <div className="flex items-center gap-6">
+            <Link href="/about" className="text-slate-300 hover:text-white transition-colors py-1.5 inline-block">
+              {locale === "ar" ? "من نحن" : "About"}
+            </Link>
             <Link href="/patient-info" className="text-slate-300 hover:text-white transition-colors py-1.5 inline-block">
               {locale === "ar" ? "معلومات التأمين والتسجيل" : "Insurance & Patient Info"}
             </Link>

@@ -1,6 +1,7 @@
 export const translations = {
   en: {
     brand: "Mayo Dental Center",
+    about: "About",
     tagline: "Affordable & Premium Dental Care in Jubail",
     bookAppointment: "Book Appointment",
     bookNow: "Book Now",
@@ -72,6 +73,7 @@ export const translations = {
   },
   ar: {
     brand: "مركز مايو لطب الأسنان",
+    about: "من نحن",
     tagline: "رعاية أسنان راقية وميسرة في الجبيل",
     bookAppointment: "احجز موعدك الآن",
     bookNow: "احجز الآن",

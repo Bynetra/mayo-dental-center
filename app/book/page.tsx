@@ -8,11 +8,9 @@ import {
   Clock,
   User,
   CheckCircle2,
-  ExternalLink,
   MessageCircle,
   ArrowRight,
   ArrowLeft,
-  ShieldCheck,
 } from "lucide-react";
 import { servicesData } from "@/content/services";
 import { businessData } from "@/content/business";
@@ -114,27 +112,6 @@ function BookingContent() {
               ? "خطوات سريعة لحجز موعدك، أو تواصل معنا مباشرة عبر الواتساب لتأكيد فوري."
               : "Complete the simple steps below, or use the direct WhatsApp link for instant priority confirmation."}
           </p>
-        </div>
-
-        {/* Existing System Notice & Direct Link */}
-        <div className="mb-8 p-4 rounded-2xl bg-primary-50 border border-primary-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-primary-900">
-          <div className="flex items-center gap-2.5">
-            <ShieldCheck className="w-5 h-5 text-primary-700 shrink-0" />
-            <span>
-              {locale === "ar"
-                ? "يمكنك أيضاً استخدام نظام الحجز الأصلي المباشر للعيادة."
-                : "You may also access the clinic's original booking calendar directly."}
-            </span>
-          </div>
-          <a
-            href={businessData.contact.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-bold text-primary-700 hover:text-primary-800 inline-flex items-center gap-1 shrink-0"
-          >
-            <span>{locale === "ar" ? "فتح النظام المباشر" : "Open Original Calendar"}</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
         </div>
 
         {/* Multi-Step Wizard Card */}
