@@ -49,7 +49,6 @@ export function generateClinicSchema(locale: string = "en") {
     ],
     sameAs: [
       businessData.contact.instagram,
-      businessData.contact.bookingUrl,
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",

@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -41,7 +40,7 @@ interface ServiceCardProps {
   featured?: boolean;
 }
 
-export function ServiceCard({ service, featured = false }: ServiceCardProps) {
+export function ServiceCard({ service }: ServiceCardProps) {
   const { locale, isRtl } = useLocale();
   const Icon = iconMap[service.iconName] || Stethoscope;
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { X, ZoomIn, Sparkles } from "lucide-react";
+import { X, ZoomIn } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BeforeAfterSlider } from "@/components/ui/BeforeAfterSlider";
 import { businessData } from "@/content/business";
@@ -11,6 +11,7 @@ import { useLocale } from "@/lib/locale";
 export function GallerySection() {
   const { locale } = useLocale();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
 
   const galleryImages = [
     {
@@ -68,29 +69,33 @@ export function GallerySection() {
 
         {/* Clinic Collection Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryImages.map((img, index) => (
-            <div
-              key={index}
-              className="group relative aspect-square rounded-2xl sm:rounded-3xl overflow-hidden shadow-card border border-slate-200/80 cursor-pointer"
-              onClick={() => setSelectedImage(img.src)}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="w-11 h-11 rounded-full bg-white/90 text-navy-900 flex items-center justify-center shadow-lg backdrop-blur-md transform translate-y-3 group-hover:translate-y-0 transition-transform">
-                  <ZoomIn className="w-5 h-5" />
-                </span>
+          {galleryImages.map((img, index) => {
+            if (failedImages[index]) return null;
+            return (
+              <div
+                key={index}
+                className="group relative aspect-square rounded-2xl sm:rounded-3xl overflow-hidden shadow-card border border-slate-200/80 cursor-pointer"
+                onClick={() => setSelectedImage(img.src)}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  onError={() => setFailedImages((prev) => ({ ...prev, [index]: true }))}
+                />
+                <div className="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span className="w-11 h-11 rounded-full bg-white/90 text-navy-900 flex items-center justify-center shadow-lg backdrop-blur-md transform translate-y-3 group-hover:translate-y-0 transition-transform">
+                    <ZoomIn className="w-5 h-5" />
+                  </span>
+                </div>
+                <div className="absolute bottom-3 start-3 end-3 px-3 py-1.5 rounded-xl bg-navy-950/80 text-white text-xs font-semibold backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">
+                  {img.title}
+                </div>
               </div>
-              <div className="absolute bottom-3 start-3 end-3 px-3 py-1.5 rounded-xl bg-navy-950/80 text-white text-xs font-semibold backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">
-                {img.title}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -117,6 +122,7 @@ export function GallerySection() {
               alt="Enlarged gallery view"
               fill
               className="object-contain"
+              onError={() => setSelectedImage(null)}
             />
           </div>
         </div>

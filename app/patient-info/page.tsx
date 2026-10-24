@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -8,10 +7,7 @@ import {
   Download,
   CreditCard,
   ShieldCheck,
-  CheckCircle2,
-  Clock,
   CalendarCheck,
-  AlertCircle,
 } from "lucide-react";
 import { businessData } from "@/content/business";
 import { SectionHeading } from "@/components/ui/SectionHeading";

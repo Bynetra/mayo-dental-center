@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,8 +10,6 @@ import {
   ShieldCheck,
   CheckCircle2,
   Sparkles,
-  ArrowRight,
-  ArrowLeft,
 } from "lucide-react";
 import { useLocale } from "@/lib/locale";
 import { businessData } from "@/content/business";
@@ -20,7 +18,7 @@ import { Badge } from "@/components/ui/Badge";
 import { isClinicOpenNow } from "@/lib/utils";
 
 export function HeroSection() {
-  const { locale, isRtl } = useLocale();
+  const { locale } = useLocale();
   const [isOpenNow, setIsOpenNow] = useState(true);
 
   useEffect(() => {

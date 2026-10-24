@@ -22,9 +22,10 @@ export function BeforeAfterSlider({
   title,
   disclaimer,
 }: BeforeAfterSliderProps) {
-  const { locale, isRtl } = useLocale();
+  const { locale } = useLocale();
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMove = useCallback((clientX: number) => {
@@ -49,6 +50,8 @@ export function BeforeAfterSlider({
 
   const defaultBefore = beforeLabel || (locale === "ar" ? "قبل التبييض" : "Before");
   const defaultAfter = afterLabel || (locale === "ar" ? "بعد التبييض السريري" : "After Treatment");
+
+  if (hasError) return null;
 
   return (
     <div className="w-full max-w-3xl mx-auto">
@@ -93,6 +96,7 @@ export function BeforeAfterSlider({
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 750px"
+            onError={() => setHasError(true)}
           />
           <span className="absolute bottom-4 end-4 px-3 py-1 rounded-full text-xs font-semibold bg-primary-900/85 text-white backdrop-blur-md shadow-md">
             {defaultAfter}
@@ -111,6 +115,7 @@ export function BeforeAfterSlider({
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 750px"
+              onError={() => setHasError(true)}
             />
             <span className="absolute bottom-4 start-4 px-3 py-1 rounded-full text-xs font-semibold bg-navy-950/85 text-white backdrop-blur-md shadow-md">
               {defaultBefore}

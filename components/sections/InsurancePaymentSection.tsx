@@ -1,8 +1,6 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { FileText, Download, ShieldCheck, CreditCard, Sparkles, CheckCircle2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";

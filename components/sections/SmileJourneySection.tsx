@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
-import { Calendar, Search, Sparkles, Smile, ArrowRight, ArrowLeft } from "lucide-react";
+import { Calendar, Search, Sparkles, Smile } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useLocale } from "@/lib/locale";
 
 export function SmileJourneySection() {
-  const { locale, isRtl } = useLocale();
+  const { locale } = useLocale();
 
   const steps = [
     {

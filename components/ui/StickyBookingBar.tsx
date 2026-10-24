@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Calendar, MessageCircle, Phone, Clock } from "lucide-react";
+import { Calendar, MessageCircle, Phone } from "lucide-react";
 import { useLocale } from "@/lib/locale";
 import { businessData } from "@/content/business";
 import { isClinicOpenNow, cn } from "@/lib/utils";

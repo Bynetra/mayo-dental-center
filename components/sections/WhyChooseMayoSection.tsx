@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { ShieldCheck, Clock, HeartHandshake, MapPin, Sparkles, AlertCircle } from "lucide-react";
 import { useLocale } from "@/lib/locale";
 import { SectionHeading } from "@/components/ui/SectionHeading";

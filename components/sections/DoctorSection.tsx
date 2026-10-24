@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { DoctorCard } from "@/components/ui/DoctorCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useLocale } from "@/lib/locale";

@@ -33,7 +33,6 @@ export interface BusinessConfig {
     whatsappFormatted: string;
     email: string;
     instagram: string;
-    bookingUrl: string;
   };
   location: {
     address: {
@@ -59,6 +58,7 @@ export interface BusinessConfig {
       lng: number;
     };
     googleMapsEmbedUrl: string;
+    googleMapsUrl: string;
     needsClientConfirmation: boolean;
   };
   hours: {
@@ -146,7 +146,6 @@ export const businessData: BusinessConfig = {
     whatsappFormatted: "+966 55 022 0715",
     email: "info@mayodentalcenter.com",
     instagram: "https://www.instagram.com/mayodentalcenter1/",
-    bookingUrl: "https://www.mayodentalcenter.com/book-online",
   },
   location: {
     address: {
@@ -172,6 +171,7 @@ export const businessData: BusinessConfig = {
       lng: 49.6583,
     },
     googleMapsEmbedUrl: "https://maps.google.com/maps?q=Mayo%20Dental%20Center%20King%20Faisal%20North%20Jubail&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    googleMapsUrl: "https://maps.google.com/?q=27.0112,49.6583",
     needsClientConfirmation: true,
   },
   hours: {

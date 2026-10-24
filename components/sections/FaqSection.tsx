@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Accordion } from "@/components/ui/Accordion";
 import { faqData } from "@/content/faq";

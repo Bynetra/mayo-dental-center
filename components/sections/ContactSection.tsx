@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
   Phone,
@@ -10,7 +10,6 @@ import {
   Send,
   CheckCircle2,
   AlertCircle,
-  Calendar,
   MessageCircle,
 } from "lucide-react";
 import { businessData } from "@/content/business";
@@ -39,6 +38,8 @@ export function ContactSection() {
   const [whatsappFallbackUrl, setWhatsappFallbackUrl] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showMap, setShowMap] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapFailed, setMapFailed] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -57,6 +58,14 @@ export function ContactSection() {
     observer.observe(mapRef.current);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!showMap || mapLoaded || mapFailed) return;
+    const timeout = setTimeout(() => {
+      setMapFailed(true);
+    }, 8000);
+    return () => clearTimeout(timeout);
+  }, [showMap, mapLoaded, mapFailed]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -408,34 +417,57 @@ export function ContactSection() {
               </div>
             </Card>
 
-            {/* Embedded Google Map (Lazy loaded on viewport approach) */}
+            {/* Embedded Google Map (Fail-safe with lazy loading, 8s timeout, and fallback card) */}
             <div
               ref={mapRef}
               className="rounded-3xl overflow-hidden border border-slate-200/90 shadow-card aspect-[16/10] relative bg-slate-100 flex items-center justify-center"
             >
-              {showMap ? (
-                <iframe
-                  title="Mayo Dental Center Jubail Google Map Location"
-                  src={businessData.location.googleMapsEmbedUrl}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={false}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
+              {showMap && !mapFailed ? (
+                <>
+                  <iframe
+                    title="Mayo Dental Center Jubail Google Map Location"
+                    src={businessData.location.googleMapsEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    onLoad={() => setMapLoaded(true)}
+                    onError={() => setMapFailed(true)}
+                  />
+                  {!mapLoaded && (
+                    <div className="absolute inset-0 bg-slate-100 flex flex-col items-center justify-center p-6 text-center animate-pulse">
+                      <MapPin className="w-8 h-8 text-primary-600 mb-2" />
+                      <span className="text-xs font-semibold text-navy-800">
+                        {locale === "ar" ? "جارٍ تحميل الخريطة..." : "Loading Map..."}
+                      </span>
+                    </div>
+                  )}
+                </>
               ) : (
                 <div className="flex flex-col items-center justify-center p-6 text-center">
-                  <MapPin className="w-8 h-8 text-primary-600 mb-2 animate-bounce" />
+                  <MapPin className="w-8 h-8 text-primary-600 mb-2" />
                   <span className="text-xs font-bold text-navy-900 block mb-1">
                     {businessData.location.address[locale]}
                   </span>
-                  <button
-                    onClick={() => setShowMap(true)}
-                    className="text-xs font-semibold text-primary-700 underline"
-                  >
-                    {locale === "ar" ? "اضغط لعرض الخريطة التفاعلية" : "Load Interactive Map"}
-                  </button>
+                  <div className="flex flex-wrap items-center justify-center gap-2 mt-3">
+                    <a
+                      href={businessData.location.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-primary-600 text-white hover:bg-primary-700 transition-colors shadow-sm"
+                    >
+                      <span>{locale === "ar" ? "فتح في خرائط Google" : "Open in Google Maps"}</span>
+                    </a>
+                    <a
+                      href={`tel:${businessData.contact.phones[0]}`}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-navy-800 hover:bg-slate-50 transition-colors shadow-sm"
+                    >
+                      <Phone className="w-3.5 h-3.5 text-primary-600" />
+                      <span>{locale === "ar" ? "اتصال" : "Call Desk"}</span>
+                    </a>
+                  </div>
                 </div>
               )}
             </div>

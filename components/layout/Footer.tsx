@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,8 +8,6 @@ import {
   MapPin,
   Clock,
   FileText,
-  CalendarCheck,
-  ShieldCheck,
   ArrowUpRight,
 } from "lucide-react";
 import { businessData } from "@/content/business";
@@ -18,7 +15,7 @@ import { servicesData } from "@/content/services";
 import { useLocale } from "@/lib/locale";
 
 export function Footer() {
-  const { locale, isRtl } = useLocale();
+  const { locale } = useLocale();
 
   return (
     <footer className="bg-navy-950 text-white pt-16 sm:pt-20 pb-20 sm:pb-24 lg:pb-28 border-t border-navy-800">

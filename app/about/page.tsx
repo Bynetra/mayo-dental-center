@@ -1,19 +1,13 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
   ShieldCheck,
-  Award,
-  Users,
   CheckCircle2,
-  CalendarCheck,
   HeartHandshake,
-  Clock,
   Sparkles,
 } from "lucide-react";
-import { businessData } from "@/content/business";
 import { DoctorCard } from "@/components/ui/DoctorCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";

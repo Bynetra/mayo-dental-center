@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { businessData } from "@/content/business";
 import { useLocale } from "@/lib/locale";

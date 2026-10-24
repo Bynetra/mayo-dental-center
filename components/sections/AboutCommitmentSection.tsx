@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
-import { Users, HeartHandshake, Calendar, PhoneCall, CheckCircle } from "lucide-react";
+import { Users, HeartHandshake, Calendar } from "lucide-react";
 import { useLocale } from "@/lib/locale";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";

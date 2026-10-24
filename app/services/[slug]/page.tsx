@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -8,14 +7,12 @@ import {
   CheckCircle2,
   CalendarCheck,
   MessageCircle,
-  ArrowRight,
-  ArrowLeft,
   ChevronRight,
   ShieldCheck,
   HelpCircle,
   Sparkles,
 } from "lucide-react";
-import { servicesData, type ServiceDetail } from "@/content/services";
+import { servicesData } from "@/content/services";
 import { businessData } from "@/content/business";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";

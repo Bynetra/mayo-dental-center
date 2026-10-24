@@ -1,16 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
-  Calendar,
-  Clock,
-  User,
   CheckCircle2,
   MessageCircle,
-  ArrowRight,
-  ArrowLeft,
 } from "lucide-react";
 import { servicesData } from "@/content/services";
 import { businessData } from "@/content/business";
@@ -20,7 +15,7 @@ import { Badge } from "@/components/ui/Badge";
 import { useLocale } from "@/lib/locale";
 
 function BookingContent() {
-  const { locale, isRtl } = useLocale();
+  const { locale } = useLocale();
   const searchParams = useSearchParams();
   const preselectedService = searchParams.get("service") || "";
 

@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Marquee } from "@/components/ui/Marquee";
 import { useLocale } from "@/lib/locale";
 

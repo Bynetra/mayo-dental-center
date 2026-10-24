@@ -1,16 +1,14 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { Award, CalendarCheck, ShieldCheck } from "lucide-react";
+import { CalendarCheck, ShieldCheck } from "lucide-react";
 import { businessData } from "@/content/business";
 import { useLocale } from "@/lib/locale";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 
 export function DoctorCard() {
-  const { locale, isRtl } = useLocale();
+  const { locale } = useLocale();
   const doc = businessData.doctor;
 
   return (

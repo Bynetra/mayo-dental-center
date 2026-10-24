@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
-import { AlertCircle, PhoneCall, MessageCircle, ArrowRight, ArrowLeft } from "lucide-react";
+import { PhoneCall, MessageCircle, ArrowRight, ArrowLeft } from "lucide-react";
 import { servicesData } from "@/content/services";
 import { businessData } from "@/content/business";
 import { ServiceCard } from "@/components/ui/ServiceCard";
