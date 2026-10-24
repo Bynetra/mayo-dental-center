@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Mayo Dental Center" }],
   creator: "Mayo Dental Center",
-  metadataBase: new URL("https://www.mayodentalcenter.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.mayodentalcenter.com"),
   alternates: {
     canonical: "/",
     languages: {

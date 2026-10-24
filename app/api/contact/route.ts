@@ -14,8 +14,8 @@ const contactSchema = z.object({
 
 // In-memory rate limiting: IP -> array of timestamps
 const rateLimitMap = new Map<string, number[]>();
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
-const MAX_REQUESTS_PER_WINDOW = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute window
+const MAX_REQUESTS_PER_WINDOW = 30; // Allow reasonable bursts while stopping automated abuse
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
@@ -137,9 +137,15 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    if (error instanceof SyntaxError) {
+      return NextResponse.json(
+        { success: false, message: "Invalid JSON format" },
+        { status: 400 }
+      );
+    }
     return NextResponse.json(
-      { success: false, message: "Internal server error" },
-      { status: 500 }
+      { success: false, message: "Unable to process request at this time. Please use WhatsApp." },
+      { status: 400 }
     );
   }
 }
