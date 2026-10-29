@@ -34,7 +34,7 @@ export default function NotFound() {
           </Link>
           <Link
             href={`https://wa.me/${businessData.contact.whatsapp.replace("+", "")}?text=${encodeURIComponent(
-              "Hello, I need help navigating the Mayo Dental Center website."
+              "Hello, I need assistance navigating the Lucida Dental Center website."
             )}`}
             target="_blank"
             rel="noopener noreferrer"

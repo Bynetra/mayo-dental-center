@@ -7,6 +7,8 @@ import {
   CheckCircle2,
   HeartHandshake,
   Sparkles,
+  MapPin,
+  Clock,
 } from "lucide-react";
 import { DoctorCard } from "@/components/ui/DoctorCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -14,6 +16,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { useLocale } from "@/lib/locale";
+import { businessData } from "@/content/business";
 
 export default function AboutPage() {
   const { locale } = useLocale();
@@ -23,16 +26,16 @@ export default function AboutPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <SectionHeading
-          badge={locale === "ar" ? "عن المركز" : "About Mayo Dental"}
+          badge={locale === "ar" ? "عن المركز" : "About Lucida Dental"}
           title={
             locale === "ar"
-              ? "رعاية طبية راقية وميسرة في قلب الجبيل"
-              : "Premier Dental Care in the Heart of Jubail"
+              ? "رعاية طبية راقية وميسرة في قلب الوعب، الدوحة"
+              : "Premier Dental Care in the Heart of Al Waab, Doha"
           }
           subtitle={
             locale === "ar"
-              ? "نجمع بين الخبرة الطبية الطويلة وأحدث التقنيات لنقدم لك ولعائلتك تجربة علاجية هادئة ومريحة."
-              : "Combining seasoned clinical skill with modern dental technology to deliver confident, healthy smiles."
+              ? "نجمع بين الخبرة السريرية المتقدمة وأحدث التقنيات الرقمية لنقدم لك ولعائلتك تجربة علاجية هادئة ومريحة."
+              : "Combining seasoned clinical skill with modern dental technology to deliver confident, healthy smiles in Qatar."
           }
         />
 
@@ -50,23 +53,23 @@ export default function AboutPage() {
               </h2>
               <p className="text-navy-600 text-sm sm:text-base leading-relaxed mb-4">
                 {locale === "ar"
-                  ? "يتكون مركز مايو لطب الأسنان من فريق متخصص وذي خبرة عالية للعناية بصحة أسنانك وأسنان جميع أفراد عائلتك. يقدم مركزنا مجموعة شاملة من الخدمات بما في ذلك الفحوصات الدورية، وتنظيف الأسنان، وطب الأسنان التجميلي، والتقويم، وزراعة الأسنان."
-                  : "Mayo Dental Center consists of a specialized and experienced team to care for the health of your teeth and the teeth of all your family members. Our center offers a wide range of services including routine checkups, teeth cleanings, cosmetic dentistry, orthodontics and more."}
+                  ? "يضم مركز لوسيدا لطب الأسنان نخبة من الأطباء المتخصصين وذوي الكفاءة العالية للعناية بصحة أسنانك وأسنان جميع أفراد عائلتك. يقدم مركزنا مجموعة شاملة من الخدمات تشمل الفحوصات الدورية، تنظيف وتلميع الأسنان، تبييض زوم الاحترافي، علاج الجذور المجهري، التقويم الشفاف، وزراعة الأسنان."
+                  : "Lucida Dental Center brings together dedicated and experienced practitioners to safeguard the oral health of your entire family. Our clinic provides a full spectrum of treatments including preventive checkups, scaling and polishing, Philips Zoom teeth whitening, microscopic endodontics, clear aligners, and dental implants."}
               </p>
               <p className="text-navy-600 text-sm sm:text-base leading-relaxed mb-6">
                 {locale === "ar"
-                  ? "راحتك ورضاك هما أهم أولوياتنا. نسعى جاهدين لخلق بيئة مرحبة حيث تشعر بالاطمئنان والثقة في الرعاية التي تتلقاها."
-                  : "Your comfort and satisfaction are our top priorities. We strive to create a welcoming environment where you feel comfortable and confident in the care you receive. Our team is always here to answer any questions you have."}
+                  ? "راحتك ورضاك هما أهم أولوياتنا. نحرص على خلق بيئة هادئة ومرحبة حيث تشعر بالاطمئنان والشفافية التامة في كل خطوة من خطوات علاجك."
+                  : "Your comfort and peace of mind are our foremost priorities. We cultivate a calm, welcoming clinical environment where you feel fully informed and confident in every stage of your dental journey."}
               </p>
 
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100 text-xs sm:text-sm font-semibold text-navy-900">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-primary-600" />
+                  <CheckCircle2 className="w-4 h-4 text-primary-600 shrink-0" />
                   <span>{locale === "ar" ? "تعقيم سريري فائق" : "Hospital-Grade Sterilization"}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-primary-600" />
-                  <span>{locale === "ar" ? "أحدث أجهزة الأشعة" : "Low-Dose Digital X-Rays"}</span>
+                  <CheckCircle2 className="w-4 h-4 text-primary-600 shrink-0" />
+                  <span>{locale === "ar" ? "أشعة رقمية منخفضة الإشعاع" : "Low-Dose Digital X-Rays"}</span>
                 </div>
               </div>
             </div>
@@ -75,7 +78,7 @@ export default function AboutPage() {
               <div className="relative w-full max-w-lg aspect-[4/3] rounded-2xl overflow-hidden shadow-lift border border-slate-100">
                 <Image
                   src="/images/original/orthodontic-checkup.jpg"
-                  alt="Doctor consultation at Mayo Dental Center"
+                  alt="Doctor consultation at Lucida Dental Center in Doha"
                   fill
                   sizes="(max-width: 1024px) 100vw, 500px"
                   className="object-cover"
@@ -99,60 +102,79 @@ export default function AboutPage() {
             <h4 className="text-lg font-bold text-navy-950 mb-2">
               {locale === "ar" ? "عناية تركز على راحة المريض" : "Gentle, Compassionate Care"}
             </h4>
-            <p className="text-sm text-navy-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-navy-600 leading-relaxed">
               {locale === "ar"
-                ? "نولي اهتماماً خاصاً للمرضى الذين يعانون من قلق عيادات الأسنان، ونوفر تخدير موضعي لطيف وغير مؤلم."
-                : "We cater to patients with dental anxiety, taking our time and using gentle, painless numbing techniques."}
+                ? "نطبق بروتوكولات تخفيف الألم المتطورة لتكون كل جلسة علاجية مريحة وخالية من التوتر والقلق."
+                : "Advanced pain-management protocols ensure every appointment is tranquil, stress-free, and respectful of your comfort."}
             </p>
           </Card>
 
           <Card variant="default" className="p-6">
-            <div className="w-12 h-12 rounded-2xl bg-accent-50 text-accent-700 flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-2xl bg-primary-50 text-primary-700 flex items-center justify-center mb-4">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h4 className="text-lg font-bold text-navy-950 mb-2">
-              {locale === "ar" ? "شفافية مطلقة في الخطط" : "Total Treatment Transparency"}
+              {locale === "ar" ? "ترخيص ومعايير QCHP الصارمة" : "QCHP Regulatory Standards"}
             </h4>
-            <p className="text-sm text-navy-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-navy-600 leading-relaxed">
               {locale === "ar"
-                ? "شرح مفصل لكافة الخيارات العلاجية والتكاليف المعتمدة قبل البدء بأي إجراء دون أي مفاجآت."
-                : "Clear explanations of all your treatment options, timelines, and costs before any procedure begins."}
+                ? "مرخص بالكامل من المجلس القطري للتخصصات الصحية مع الالتزام بأحدث إرشادات السلامة والتعقيم العالمية."
+                : "Fully licensed by the Qatar Council for Healthcare Practitioners, complying with strict international hygiene directives."}
             </p>
           </Card>
 
           <Card variant="default" className="p-6">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-2xl bg-primary-50 text-primary-700 flex items-center justify-center mb-4">
               <Sparkles className="w-6 h-6" />
             </div>
             <h4 className="text-lg font-bold text-navy-950 mb-2">
-              {locale === "ar" ? "تسهيلات دفع وتأمين" : "Insurance & Tabby Plans"}
+              {locale === "ar" ? "شفافية العلاج والأسعار" : "Transparent Treatment Planning"}
             </h4>
-            <p className="text-sm text-navy-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-navy-600 leading-relaxed">
               {locale === "ar"
-                ? "تأمين التعاونية وميدغلف معتمدان، بالإضافة إلى إمكانية تقسيط العلاج على 4 دفعات بدون فوائد عبر تابي."
-                : "Approved provider for Tawuniya & Medgulf insurance, plus zero-interest 4x installments through Tabby."}
+                ? "خطة علاجية واضحة ومحددة التكاليف قبل البدء مع إمكانية التقسيط الميسر عبر تابي."
+                : "Clear, itemized treatment pathways and fees explained in advance, with convenient Tabby 4x split payment options."}
             </p>
           </Card>
         </div>
 
-        {/* CTA Banner */}
-        <div className="p-8 rounded-3xl bg-navy-950 text-white text-center shadow-xl">
-          <h3 className="text-2xl font-bold font-display mb-2">
-            {locale === "ar" ? "يسعدنا الترحيب بك في مركز مايو بالجبيل" : "We Look Forward to Welcoming You"}
-          </h3>
-          <p className="text-sm text-slate-300 max-w-lg mx-auto mb-6">
-            {locale === "ar"
-              ? "احجز موعدك اليوم واكتشف بنفسك المعايير الطبية المتميزة لمركزنا."
-              : "Book your consultation today and experience high-standard, gentle dentistry."}
-          </p>
-          <Link href="/book">
-            <Button size="lg">
-              {locale === "ar" ? "احجز موعدك الطبي الآن" : "Book an Appointment"}
-            </Button>
-          </Link>
+        {/* Location & Quick CTA Band */}
+        <div className="p-8 sm:p-10 rounded-3xl bg-navy-950 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-primary-300 shrink-0">
+              <MapPin className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold font-display">
+                {locale === "ar" ? "موقعنا في الوعب، الدوحة" : "Visit Our Clinic in Al Waab, Doha"}
+              </h3>
+              <p className="text-sm text-slate-300 mt-1 max-w-xl">
+                {locale === "ar"
+                  ? "شارع بوحصا (شارع صنيع بو حصى)، منطقة الوعب. متواجدون لخدمتكم السبت إلى الأربعاء 9–1 و 4:30–8:30، والخميس 9–5."
+                  : "Bu Hasa Street (Snay Bu Hasa St), Al Waab District. Open Saturday to Wednesday 9am–1pm & 4:30pm–8:30pm, and Thursday 9am–5pm."}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <Link href="/book" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto">
+                {locale === "ar" ? "احجز استشارتك" : "Book Consultation"}
+              </Button>
+            </Link>
+            <a
+              href={businessData.location.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto bg-transparent border-white/30 text-white hover:bg-white/10 hover:border-white">
+                {locale === "ar" ? "اتجاهات القيادة" : "Get Directions"}
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-

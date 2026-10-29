@@ -1,57 +1,44 @@
-# Mayo Dental Center — Image Asset Audit, Classification & Provenance
+# Lucida Dental Center — Image Asset Audit, Classification & Provenance
 
-**Audit Date:** 2026-10-24  
+**Audit Date:** 2026-10-30  
 **Auditor:** Senior Product Designer & Next.js Engineer  
-**Method:** Programmatic extraction via `sharp` and Node.js `fs.statSync`
+**Method:** Node.js file system inspection & visual fidelity audit
 
 ---
 
 ## 1. Compliance & Ethical Boundaries
 
-1. **Dr. Dixon Representation:** No AI-generated human face represents Dr. Dixon anywhere on the website. Replaced with an elegant branded placeholder card ("Official Portrait Coming Soon / الصورة الرسمية قريباً").
-2. **Neutral Gallery Classification:** Images in "Our Collection" (`gallery-1.jpg` through `gallery-5.jpg`) are displayed under neutral clinic showcase headings. They are NOT described as verified patient clinical cases until confirmed in writing by Dr. Dixon.
-3. **Orthodontics Asset Reclassification:** `service-orthodontics.jpg` in `/public/images/enhanced/` is explicitly classified as **`GENERATED`** (not `ENHANCED`), because synthetic image generation was used to create a new high-resolution clinical composition to replace a degraded 300 × 208 px thumbnail. It serves strictly as a generic procedure illustration.
-4. **Before/After Whitening Feature:** The whitening demo uses generic illustrative stock (`before-whitening.jpg` / `after-whitening.jpg`). A content configuration toggle (`showBeforeAfterSlider: false`) hides this section by default for client demonstration until consented clinic photography is provided.
-5. **Original Source Preservation:** All original Wix CDN assets are permanently archived in `/public/images/original/`.
+1. **Dr. Adey Al-Shaar & Dr. Mohamed Isa Representation:** No artificial intelligence human faces represent the doctors anywhere on the website. Displayed with branded clinical credential cards until official studio headshots are conducted.
+2. **Neutral Gallery Classification:** Images in the clinic gallery (`gallery-1.webp` through `gallery-5.webp` and `hero-clinic-ambiance.webp`) are displayed under neutral facility showcase headings. They are NOT described as verified patient clinical cases.
+3. **Orthodontics Asset Classification:** `service-orthodontics.jpg` serves strictly as a generic high-resolution procedure illustration matching the teal/clean medical palette.
+4. **Before/After Whitening Feature:** The whitening comparison uses generic illustrative material (`before-whitening.jpg` / `after-whitening.jpg`). The content configuration toggle (`showBeforeAfterSlider: false`) hides this section by default for client demonstration until consented clinic photography is provided.
+5. **Original Source Preservation:** The original user-supplied Lucida logo mark is permanently archived at `/public/images/original/lucida-logo-supplied.png`.
 
 ---
 
-## 2. Programmatically Audited Image Inventory (via `sharp`)
+## 2. Programmatically Audited Image Inventory
 
 | File Name | Path on Disk | Programmatic Dimensions | File Size | Exact Category | Role & Usage Notes | Active in UI? |
 | :--- | :--- | :---: | :---: | :---: | :--- | :---: |
-| `mayo-logo.png` | `/public/images/original/mayo-logo.png` | 500 × 500 px | 44.8 KB | **ORIGINAL** | Official Mayo Dental Center clinic identity from Wix CDN | **Yes** (Navbar, Footer, Mobile Drawer) |
-| `hero-dental-tools.webp` | `/public/images/original/hero-dental-tools.webp` | 1200 × 800 px | 44.4 KB | **ORIGINAL (Optimized)** | High-res clinical instruments photo from old Wix site (converted to high-perf WebP) | **Yes** (Homepage Hero Visual) |
-| `gallery-1.jpg` | `/public/images/original/gallery-1.jpg` | 1080 × 1080 px | 362.4 KB | **ORIGINAL** | Wix "Our Collection" photo 1 (neutral clinic collection showcase) | **Yes** (Our Collection Grid) |
-| `gallery-2.jpg` | `/public/images/original/gallery-2.jpg` | 1080 × 1080 px | 358.3 KB | **ORIGINAL** | Wix "Our Collection" photo 2 (neutral clinic collection showcase) | **Yes** (Our Collection Grid) |
-| `gallery-3.jpg` | `/public/images/original/gallery-3.jpg` | 1080 × 1080 px | 384.2 KB | **ORIGINAL** | Wix "Our Collection" photo 3 (neutral clinic collection showcase) | **Yes** (Our Collection Grid) |
-| `gallery-4.jpg` | `/public/images/original/gallery-4.jpg` | 1080 × 1080 px | 412.0 KB | **ORIGINAL** | Wix "Our Collection" photo 4 (neutral clinic collection showcase) | **Yes** (Our Collection Grid) |
-| `gallery-5.jpg` | `/public/images/original/gallery-5.jpg` | 1080 × 1080 px | 389.9 KB | **ORIGINAL** | Wix "Our Collection" photo 5 (neutral clinic collection showcase) | **Yes** (Our Collection Grid) |
-| `service-general-checkup.jpeg` | `/public/images/original/service-general-checkup.jpeg` | 5616 × 3420 px | 1,582.4 KB | **ORIGINAL** | Original Wix booking procedure photograph (General Checkup) | **Yes** (Service Card & Detail) |
-| `service-scaling-polishing.webp` | `/public/images/original/service-scaling-polishing.webp` | 800 × 534 px | 18.5 KB | **ORIGINAL (Optimized)** | Original Wix procedure photo for Scaling & Polishing (WebP) | **Yes** (Service Card & Detail) |
-| `service-fluoride.webp` | `/public/images/original/service-fluoride.webp` | 800 × 533 px | 20.7 KB | **ORIGINAL (Optimized)** | Original Wix procedure photo for Fluoride Application (WebP) | **Yes** (Service Card & Detail) |
-| `service-extraction.webp` | `/public/images/original/service-extraction.webp` | 800 × 533 px | 24.5 KB | **ORIGINAL (Optimized)** | Original Wix procedure photo for Tooth Extraction (WebP) | **Yes** (Service Card & Detail) |
-| `service-root-canal.webp` | `/public/images/original/service-root-canal.webp` | 800 × 533 px | 19.7 KB | **ORIGINAL (Optimized)** | Original Wix procedure photo for Root Canal Treatment (WebP) | **Yes** (Service Card & Detail) |
-| `service-whitening.webp` | `/public/images/original/service-whitening.webp` | 800 × 534 px | 28.6 KB | **ORIGINAL (Optimized)** | Original Wix procedure photo for Teeth Whitening (WebP) | **Yes** (Service Card & Detail) |
-| `service-hollywood-smile.webp` | `/public/images/original/service-hollywood-smile.webp` | 800 × 533 px | 10.0 KB | **ORIGINAL (Optimized)** | Original Wix procedure photo for Hollywood Smile (WebP) | **Yes** (Service Card & Detail) |
-| `service-dental-implants.webp` | `/public/images/original/service-dental-implants.webp` | 800 × 533 px | 13.7 KB | **ORIGINAL (Optimized)** | Original Wix procedure photo for Dental Implants (WebP) | **Yes** (Service Card & Detail) |
-| `service-emergency.jpeg` | `/public/images/original/service-emergency.jpeg` | 5472 × 3648 px | 806.2 KB | **ORIGINAL** | Original Wix procedure photo for Emergency Appointments | **Yes** (Service Card & Detail) |
-| `insurance-tawuniya.png` | `/public/images/original/insurance-tawuniya.png` | 450 × 450 px | 25.0 KB | **ORIGINAL** | Official Tawuniya healthcare partner logo from Wix site | **Yes** (Marquee, Insurance Band) |
-| `insurance-medgulf.png` | `/public/images/original/insurance-medgulf.png` | 1247 × 900 px | 355.1 KB | **ORIGINAL** | Official Medgulf health insurance partner logo from Wix site | **Yes** (Marquee, Insurance Band) |
-| `partner-visa.png` | `/public/images/original/partner-visa.png` | 201 × 201 px | 2.6 KB | **ORIGINAL** | Verified Visa payment network badge | **Yes** (Payment strip) |
-| `partner-mastercard.png` | `/public/images/original/partner-mastercard.png` | 201 × 201 px | 21.1 KB | **ORIGINAL** | Verified Mastercard payment network badge | **Yes** (Payment strip) |
-| `partner-tabby.png` | `/public/images/original/partner-tabby.png` | 400 × 400 px | 8.8 KB | **ORIGINAL** | Verified Tabby 4x payment partner badge from Wix site | **Yes** (Payment strip) |
-| `service-orthodontics.jpg` | `/public/images/enhanced/service-orthodontics.jpg` | 1376 × 768 px | 666.2 KB | **GENERATED** | Generic clinical illustration for Orthodontics service | **Yes** (Service Card & Detail) |
-| `before-whitening.jpg` | `/public/images/generated/before-whitening.jpg` | 1200 × 896 px | 699.4 KB | **GENERATED** | Generic stock demonstration of whitening (hidden by default) | **Demo Only** (`showBeforeAfterSlider: false`) |
-| `after-whitening.jpg` | `/public/images/generated/after-whitening.jpg` | 1200 × 896 px | 644.7 KB | **GENERATED** | Generic stock demonstration of whitening (hidden by default) | **Demo Only** (`showBeforeAfterSlider: false`) |
-| `hero-clinic-ambiance.jpg` | `/public/images/generated/hero-clinic-ambiance.jpg` | 1376 × 768 px | 671.8 KB | **GENERATED** | Generic clinic lounge ambiance background illustration | **Yes** (About section visual) |
-| `doctor-portrait.jpg` | `/public/images/generated/doctor-portrait.jpg` | 896 × 1200 px | 608.5 KB | **GENERATED** | Synthetic human face. **Permanently removed from UI** | **NO (Removed from UI)** |
+| `lucida-logo-mark.svg` | `/public/images/original/lucida-logo-mark.svg` | Scalable Vector | 1.8 KB | **BRAND SVG** | Pure scalable vector mark of Lucida tooth emblem | **Yes** (Brand identity) |
+| `lucida-logo-full.svg` | `/public/images/original/lucida-logo-full.svg` | Scalable Vector | 2.5 KB | **BRAND SVG** | Full bilingual vector logo lockup | **Yes** (Header & presentation) |
+| `lucida-logo-refined.png`| `/public/images/original/lucida-logo-refined.png` | 335 × 335 px | 91 KB | **BRAND RASTER** | Refined transparent logo with luminous spring green | **Yes** (Fallback & App icons) |
+| `lucida-logo-supplied.png`| `/public/images/original/lucida-logo-supplied.png` | 335 × 335 px | 93 KB | **SOURCE ARCHIVE** | Preserved user-supplied logo asset | **No** (Archival reference) |
+| `hero-clinic-ambiance.webp`| `/public/images/generated/hero-clinic-ambiance.webp` | 2400 × 1600 px | 60.4 KB | **FACILITY SHOWCASE**| Modern diagnostic operatory with digital chairs | **Yes** (Gallery & Hero) |
+| `hero-dental-tools.webp` | `/public/images/original/hero-dental-tools.webp` | 1200 × 800 px | 44.4 KB | **CLINICAL GEAR** | High-res clinical sterilization tray instruments | **Yes** (Hero Floating Card) |
+| `gallery-1.webp` | `/public/images/original/gallery-1.webp` | 800 × 800 px | 70.2 KB | **CLINICAL SUITE** | Patient treatment operatory suite in Al Waab | **Yes** (Gallery Grid) |
+| `gallery-2.webp` | `/public/images/original/gallery-2.webp` | 800 × 800 px | 32.8 KB | **STERILIZATION** | Hygiene and sterilization workflow station | **Yes** (Gallery Grid) |
+| `gallery-3.webp` | `/public/images/original/gallery-3.webp` | 800 × 800 px | 55.2 KB | **RECEPTION** | Welcoming patient reception & consultation lounge | **Yes** (Gallery Grid) |
+| `gallery-4.webp` | `/public/images/original/gallery-4.webp` | 800 × 800 px | 25.5 KB | **OPERATORY** | Modern digital operatory chairs | **Yes** (Gallery Grid) |
+| `gallery-5.webp` | `/public/images/original/gallery-5.webp` | 800 × 800 px | 88.9 KB | **CARE SETTING** | Tranquil patient care environment | **Yes** (Gallery Grid) |
+| `insurance-alkoot.svg` | `/public/images/original/insurance-alkoot.svg` | Scalable Vector | 424 B | **INSURANCE BADGE**| AlKoot Insurance Qatar network badge | **Yes** (Insurance Marquee) |
+| `insurance-qlm.svg` | `/public/images/original/insurance-qlm.svg` | Scalable Vector | 402 B | **INSURANCE BADGE**| QLM Life & Medical Insurance Qatar badge | **Yes** (Insurance Marquee) |
+| `partner-naps.svg` | `/public/images/original/partner-naps.svg` | Scalable Vector | 414 B | **PAYMENT BADGE** | NAPS Qatar National ATM & POS network | **Yes** (Payment Marquee) |
 
 ---
 
-## 3. Orthodontics Asset Detailed Provenance (`service-orthodontics.jpg`)
+## 3. Purged Legacy Assets
 
-- **Original Wix Asset:** Downloaded from `https://static.wixstatic.com/media/5c9880_5f8adc2d41f8414299309422d61dd0c0~mv2.jpg`. The native dimensions were only **300 × 208 px** with a file size of **8.9 KB**.
-- **Nature of Transformation:** Because the original file was too small to display clearly on modern retina screens without severe blurring and pixelation, an AI generation pipeline produced a clean, modern clinical scene of orthodontic braces on adult teeth with medical instruments in soft focus.
-- **Classification Status:** Formally reclassified as **`GENERATED`** rather than `ENHANCED`, acknowledging that new visual details and composition were synthesized.
-- **Client Action Required:** Client should provide authentic high-resolution clinical photographs of orthodontic treatments conducted at Mayo Dental Center Jubail.
+- `mayo-logo.png` — **PURGED**
+- `insurance-tawuniya.png` — **PURGED**
+- `insurance-medgulf.png` — **PURGED**

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { servicesData } from "@/content/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.mayodentalcenter.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://lucidadental.com";
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -30,12 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/patient-info`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -52,4 +46,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...staticRoutes, ...serviceRoutes];
 }
-

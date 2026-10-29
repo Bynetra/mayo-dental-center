@@ -9,11 +9,11 @@ export function generateClinicSchema(locale: string = "en") {
     "@type": ["Dentist", "LocalBusiness", "MedicalClinic"],
     name: isAr ? businessData.name.ar : businessData.name.en,
     alternateName: isAr ? businessData.shortName.ar : businessData.shortName.en,
-    url: "https://www.mayodentalcenter.com",
-    logo: "https://www.mayodentalcenter.com/images/original/mayo-logo.png",
+    url: "https://lucidadental.com",
+    logo: "https://lucidadental.com/images/original/lucida-logo.png",
     image: [
-      "https://www.mayodentalcenter.com/images/original/hero-dental-tools.jpg",
-      "https://www.mayodentalcenter.com/images/generated/hero-clinic-ambiance.jpg",
+      "https://lucidadental.com/images/original/lucida-og-image.jpg",
+      "https://lucidadental.com/images/original/hero-dental-tools.webp",
     ],
     telephone: businessData.contact.phones[0],
     email: businessData.contact.email,
@@ -22,10 +22,10 @@ export function generateClinicSchema(locale: string = "en") {
     address: {
       "@type": "PostalAddress",
       streetAddress: businessData.location.street,
-      addressLocality: isAr ? businessData.location.city.ar : businessData.location.city.en,
-      addressRegion: "Eastern Province",
-      postalCode: businessData.location.postalCode,
-      addressCountry: "SA",
+      addressLocality: isAr ? "الوعب، الدوحة" : "Al Waab, Doha",
+      addressRegion: isAr ? "الدوحة" : "Doha",
+      postalCode: "Doha",
+      addressCountry: "QA",
     },
     geo: {
       "@type": "GeoCoordinates",
@@ -41,18 +41,36 @@ export function generateClinicSchema(locale: string = "en") {
           "Monday",
           "Tuesday",
           "Wednesday",
-          "Thursday",
         ],
         opens: "09:00",
-        closes: "21:00",
+        closes: "13:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Saturday",
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+        ],
+        opens: "16:30",
+        closes: "20:30",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Thursday"],
+        opens: "09:00",
+        closes: "17:00",
       },
     ],
     sameAs: [
       businessData.contact.instagram,
+      businessData.contact.facebook,
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: isAr ? "خدمات طب الأسنان" : "Dental Care Services",
+      name: isAr ? "خدمات طب وتجميل الأسنان" : "Dental & Cosmetic Treatments",
       itemListElement: servicesData.map((s, index) => ({
         "@type": "Offer",
         itemOffered: {
@@ -66,4 +84,3 @@ export function generateClinicSchema(locale: string = "en") {
     },
   };
 }
-

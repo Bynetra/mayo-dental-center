@@ -11,8 +11,8 @@ const DoctorSection = dynamic(
   () => import("@/components/sections/DoctorSection").then((m) => m.DoctorSection),
   { ssr: true }
 );
-const WhyChooseMayoSection = dynamic(
-  () => import("@/components/sections/WhyChooseMayoSection").then((m) => m.WhyChooseMayoSection),
+const WhyChooseLucidaSection = dynamic(
+  () => import("@/components/sections/WhyChooseLucidaSection").then((m) => m.WhyChooseLucidaSection),
   { ssr: true }
 );
 const ServicesSection = dynamic(
@@ -56,33 +56,32 @@ export default function HomePage() {
       {/* 3. About Us & Our Commitment Editorial Section */}
       <AboutCommitmentSection />
 
-      {/* 4. Meet Dr. Dixon Clinical Leadership Showcase */}
+      {/* 4. Meet Dr. Adey Al-Shaar Clinical Leadership Showcase */}
       <DoctorSection />
 
-      {/* 5. Why Choose Mayo Verified Clinical Standards */}
-      <WhyChooseMayoSection />
+      {/* 5. Why Choose Lucida Verified Clinical Standards */}
+      <WhyChooseLucidaSection />
 
       {/* 6. Comprehensive Services Bento Grid & Emergency Banner */}
       <ServicesSection />
 
-      {/* 6. Smile Journey 4-Step Patient Pathway */}
+      {/* 7. Smile Journey 4-Step Patient Pathway */}
       <SmileJourneySection />
 
-      {/* 7. Clinical Whitening Before/After Slider & Real Photo Gallery */}
+      {/* 8. Clinical Whitening Before/After Slider & Real Photo Gallery */}
       <GallerySection />
 
-      {/* 8. Frequently Asked Questions Accordion */}
+      {/* 9. Frequently Asked Questions Accordion */}
       <FaqSection />
 
-      {/* 9. Insurance Partnerships, Tabby & Registration Form Download */}
+      {/* 10. Insurance Partnerships, Tabby & Registration Form Download */}
       <InsurancePaymentSection />
 
-      {/* 10. Final Call to Action Conversion Band */}
+      {/* 11. Final Call to Action Conversion Band */}
       <FinalCtaSection />
 
-      {/* 11. Contact Form, Live Operating Hours & Embedded Google Map */}
+      {/* 12. Contact Form, Live Operating Hours & Embedded Google Map */}
       <ContactSection />
     </>
   );
 }
-

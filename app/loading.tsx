@@ -6,9 +6,8 @@ export default function Loading() {
         <div className="w-16 h-16 rounded-full border-4 border-t-primary-600 border-primary-100 animate-spin" />
       </div>
       <p className="text-xs font-bold uppercase tracking-wider text-primary-700">
-        Mayo Dental Center...
+        Lucida Dental Center...
       </p>
     </div>
   );
 }
-

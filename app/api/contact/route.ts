@@ -56,7 +56,6 @@ export async function POST(request: Request) {
     // 2. Honeypot check: If the hidden 'website' field was filled out, it's a bot
     if (validated.website && validated.website.trim().length > 0) {
       console.warn("[Spam Trap] Honeypot triggered by IP:", ip);
-      // Silently accept so bot thinks it succeeded
       return NextResponse.json({
         success: true,
         message: "Message received.",
@@ -64,10 +63,10 @@ export async function POST(request: Request) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const recipientEmail = process.env.CONTACT_TO_EMAIL || "info@mayodentalcenter.com";
+    const recipientEmail = process.env.CONTACT_TO_EMAIL || "info@lucidadental.com";
 
-    // 3. Prepare Pre-filled WhatsApp Fallback URL
-    const waText = `*Mayo Dental Center - New Consultation Inquiry*%0A%0A*Name:* ${encodeURIComponent(
+    // 3. Prepare Pre-filled WhatsApp Fallback URL for Lucida Dental Center (+974 5531 1553)
+    const waText = `*Lucida Dental Center - New Consultation Inquiry*%0A%0A*Name:* ${encodeURIComponent(
       validated.name
     )}%0A*Phone:* ${encodeURIComponent(validated.phone)}${
       validated.email ? `%0A*Email:* ${encodeURIComponent(validated.email)}` : ""
@@ -76,7 +75,7 @@ export async function POST(request: Request) {
     }${validated.date ? `%0A*Preferred Date:* ${encodeURIComponent(validated.date)}` : ""}${
       validated.message ? `%0A*Notes:* ${encodeURIComponent(validated.message)}` : ""
     }`;
-    const whatsappUrl = `https://wa.me/966550220715?text=${waText}`;
+    const whatsappUrl = `https://wa.me/97455311553?text=${waText}`;
 
     // 4. If RESEND_API_KEY is configured, send email notification
     if (resendApiKey) {
@@ -88,7 +87,7 @@ export async function POST(request: Request) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "Mayo Dental Center <inquiries@mayodentalcenter.com>",
+            from: "Lucida Dental Center <inquiries@lucidadental.com>",
             to: [recipientEmail],
             subject: `New Dental Consultation Request: ${validated.name}`,
             html: `
@@ -100,7 +99,7 @@ export async function POST(request: Request) {
               <p><strong>Preferred Date:</strong> ${validated.date || "Flexible"}</p>
               <p><strong>Notes / Symptoms:</strong> ${validated.message || "None"}</p>
               <hr />
-              <p><small>Delivered via Mayo Dental Center Next.js Portal</small></p>
+              <p><small>Delivered via Lucida Dental Center Next.js Portal</small></p>
             `,
           }),
         });
@@ -118,9 +117,9 @@ export async function POST(request: Request) {
       }
     }
 
-    // 5. Fallback: Resend key not configured or failed - return WhatsApp instant fallback
+    // 5. Fallback: Log inquiry and provide instant WhatsApp link
     console.log(
-      "[Mayo Dental Center] Local/Fallback Mode: Inquiry logged. Pre-filled WhatsApp fallback provided.",
+      "[Lucida Dental Center] Consultation inquiry logged. WhatsApp fallback provided.",
       validated
     );
 

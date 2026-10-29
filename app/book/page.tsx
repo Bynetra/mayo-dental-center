@@ -6,6 +6,10 @@ import { useSearchParams } from "next/navigation";
 import {
   CheckCircle2,
   MessageCircle,
+  Calendar,
+  Clock,
+  ShieldCheck,
+  ChevronRight,
 } from "lucide-react";
 import { servicesData } from "@/content/services";
 import { businessData } from "@/content/business";
@@ -40,15 +44,16 @@ function BookingContent() {
 
   const activeServiceObj = servicesData.find((s) => s.slug === selectedService);
 
+  // Time slots aligned with verified Lucida split-shifts: 9am-1pm & 4:30pm-8:30pm
   const timeSlots = [
     "09:30 AM",
     "10:30 AM",
     "11:30 AM",
-    "01:00 PM",
-    "02:30 PM",
-    "04:00 PM",
+    "12:30 PM",
+    "04:30 PM",
     "05:30 PM",
-    "07:00 PM",
+    "06:30 PM",
+    "07:30 PM",
     "08:00 PM",
   ];
 
@@ -79,15 +84,15 @@ function BookingContent() {
 
   const whatsappMessage = encodeURIComponent(
     locale === "ar"
-      ? `مرحباً، أود حجز موعد في مركز مايو لطب الأسنان:\nالخدمة: ${
-          activeServiceObj?.title.ar || "فحص عام"
+      ? `مرحباً، أود حجز موعد في مركز لوسيدا لطب الأسنان بالوعب:\nالخدمة: ${
+          activeServiceObj?.title.ar || "فحص واستشارة"
         }\nالتاريخ: ${selectedDate || "أقرب وقت متاح"}\nالوقت: ${
           selectedTime || "الفترة المسائية"
         }\nالاسم: ${patientDetails.name || ""}\nالجوال: ${patientDetails.phone || ""}`
-      : `Hello, I would like to book an appointment at Mayo Dental Center:\nService: ${
-          activeServiceObj?.title.en || "General Checkup"
+      : `Hello, I would like to book an appointment at Lucida Dental Center in Al Waab:\nService: ${
+          activeServiceObj?.title.en || "General Consultation"
         }\nDate: ${selectedDate || "Earliest available"}\nTime: ${
-          selectedTime || "Afternoon"
+          selectedTime || "Evening"
         }\nName: ${patientDetails.name || ""}\nPhone: ${patientDetails.phone || ""}`
   );
 
@@ -100,7 +105,7 @@ function BookingContent() {
             {locale === "ar" ? "حجز موعد إلكتروني" : "Online Appointment Reservation"}
           </Badge>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-navy-950 font-display tracking-tight mb-3">
-            {locale === "ar" ? "احجز موعدك في مركز مايو" : "Book Your Dental Visit"}
+            {locale === "ar" ? "احجز موعدك في مركز لوسيدا" : "Book Your Visit at Lucida Dental"}
           </h1>
           <p className="text-sm sm:text-base text-navy-600">
             {locale === "ar"
@@ -121,8 +126,8 @@ function BookingContent() {
               </h2>
               <p className="text-sm sm:text-base text-navy-600 max-w-md mx-auto mb-6">
                 {locale === "ar"
-                  ? "شكراً لاختيارك مركز مايو لطب الأسنان. سيقوم موظف الاستقبال بمراجعة الموعد والتواصل معك لتأكيد الحجز النهائي."
-                  : "Thank you for choosing Mayo Dental Center. Our desk will contact you via phone or WhatsApp shortly to confirm your booking."}
+                  ? "شكراً لاختيارك مركز لوسيدا لطب الأسنان بالوعب. سيقوم موظف الاستقبال بمراجعة الموعد والتواصل معك لتأكيد الحجز النهائي."
+                  : "Thank you for choosing Lucida Dental Center in Al Waab. Our reception desk will contact you via phone or WhatsApp shortly to confirm your booking."}
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4">
@@ -193,7 +198,7 @@ function BookingContent() {
               {step === 1 && (
                 <div>
                   <h3 className="text-lg font-bold text-navy-950 mb-4">
-                    {locale === "ar" ? "اختر الخدمة المطلوبة:" : "Step 1: Select Dental Service"}
+                    {locale === "ar" ? "اختر الخدمة المطلوبة:" : "Step 1: Select Dental Treatment"}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
                     {servicesData.map((s) => (
@@ -201,23 +206,16 @@ function BookingContent() {
                         key={s.id}
                         type="button"
                         onClick={() => setSelectedService(s.slug)}
-                        className={`p-4 rounded-2xl border text-start transition-all flex flex-col justify-between ${
+                        className={`p-4 rounded-2xl border text-start transition-all ${
                           selectedService === s.slug
-                            ? "bg-primary-50/70 border-primary-600 ring-2 ring-primary-600 shadow-sm"
-                            : "bg-white border-slate-200 hover:border-primary-300"
+                            ? "bg-primary-50/80 border-primary-600 ring-2 ring-primary-600/20 shadow-sm"
+                            : "bg-white border-slate-200 hover:border-slate-300"
                         }`}
                       >
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="font-bold text-sm text-navy-950">
-                            {s.title[locale]}
-                          </span>
-                          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-navy-700">
-                            {s.duration}
-                          </span>
-                        </div>
-                        <p className="text-xs text-navy-500 line-clamp-2">
-                          {s.shortDescription[locale]}
-                        </p>
+                        <span className="text-xs text-primary-700 font-bold block mb-1">
+                          {s.category[locale]} • {s.duration}
+                        </span>
+                        <h4 className="text-sm font-bold text-navy-950">{s.title[locale]}</h4>
                       </button>
                     ))}
                   </div>
@@ -225,60 +223,58 @@ function BookingContent() {
                   <div className="flex justify-end">
                     <Button
                       size="lg"
-                      onClick={() => {
-                        if (!selectedService) {
-                          setSelectedService(servicesData[0].slug);
-                        }
-                        setStep(2);
-                      }}
+                      disabled={!selectedService}
+                      onClick={() => setStep(2)}
+                      icon={<ChevronRight className="w-4 h-4 rtl:rotate-180" />}
                     >
-                      {locale === "ar" ? "متابعة لاختيار الموعد" : "Continue to Schedule"}
+                      {locale === "ar" ? "المتابعة لاختيار التاريخ" : "Continue to Schedule"}
                     </Button>
                   </div>
                 </div>
               )}
 
-              {/* STEP 2: Date & Time */}
+              {/* STEP 2: Date & Time Selection */}
               {step === 2 && (
                 <div>
                   <h3 className="text-lg font-bold text-navy-950 mb-4">
-                    {locale === "ar" ? "حدد اليوم والوقت المفضل:" : "Step 2: Choose Date & Time"}
+                    {locale === "ar" ? "اختر التاريخ والوقت المناسب:" : "Step 2: Choose Date & Preferred Slot"}
                   </h3>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <div>
                       <label className="block text-xs font-bold text-navy-900 mb-2">
-                        {locale === "ar" ? "تاريخ الزيارة (السبت - الخميس)" : "Preferred Date (Sat - Thu)"}
+                        {locale === "ar" ? "تاريخ الزيارة (السبت – الخميس):" : "Preferred Visit Date:"}
                       </label>
                       <input
                         type="date"
-                        required
                         value={selectedDate}
                         onChange={(e) => setSelectedDate(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
+                        className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
                       />
-                      <p className="text-[11px] text-slate-500 mt-1.5">
-                        {locale === "ar" ? "* العيادة مغلقة يوم الجمعة" : "* Note: Clinic is closed on Fridays"}
-                      </p>
+                      <span className="text-[11px] text-navy-500 mt-1.5 block">
+                        {locale === "ar"
+                          ? "الجمعة مغلق — الحالات الطارئة تخدم عبر الواتساب"
+                          : "Closed on Fridays. Emergency on-call support via WhatsApp."}
+                      </span>
                     </div>
 
                     <div>
                       <label className="block text-xs font-bold text-navy-900 mb-2">
-                        {locale === "ar" ? "الفترة المفضلة" : "Available Time Slots"}
+                        {locale === "ar" ? "الفترة الزمنية المتاحة:" : "Available Time Slot:"}
                       </label>
                       <div className="grid grid-cols-3 gap-2">
-                        {timeSlots.map((slot) => (
+                        {timeSlots.map((time) => (
                           <button
-                            key={slot}
+                            key={time}
                             type="button"
-                            onClick={() => setSelectedTime(slot)}
-                            className={`py-2 px-2 rounded-xl text-xs font-semibold border transition-all ${
-                              selectedTime === slot
+                            onClick={() => setSelectedTime(time)}
+                            className={`py-2 px-2.5 rounded-xl text-xs font-bold border transition-all ${
+                              selectedTime === time
                                 ? "bg-primary-600 text-white border-primary-600 shadow-sm"
-                                : "bg-white border-slate-200 hover:border-primary-300 text-navy-800"
+                                : "bg-white text-navy-800 border-slate-200 hover:bg-slate-50"
                             }`}
                           >
-                            {slot}
+                            {time}
                           </button>
                         ))}
                       </div>
@@ -289,54 +285,58 @@ function BookingContent() {
                     <Button variant="ghost" size="md" onClick={() => setStep(1)}>
                       {locale === "ar" ? "السابق" : "Back"}
                     </Button>
-                    <Button size="lg" onClick={() => setStep(3)}>
-                      {locale === "ar" ? "متابعة لتأكيد البيانات" : "Continue to Details"}
+
+                    <Button
+                      size="lg"
+                      disabled={!selectedDate || !selectedTime}
+                      onClick={() => setStep(3)}
+                      icon={<ChevronRight className="w-4 h-4 rtl:rotate-180" />}
+                    >
+                      {locale === "ar" ? "المتابعة لبيانات التواصل" : "Continue to Contact Details"}
                     </Button>
                   </div>
                 </div>
               )}
 
-              {/* STEP 3: Patient Details & Confirm */}
+              {/* STEP 3: Contact & Booking Details */}
               {step === 3 && (
                 <form onSubmit={handleFinishBooking}>
                   <h3 className="text-lg font-bold text-navy-950 mb-4">
-                    {locale === "ar" ? "بيانات المريض والتأكيد:" : "Step 3: Patient Information"}
+                    {locale === "ar" ? "الخطوة 3: بيانات التواصل والتأكيد" : "Step 3: Contact & Booking Details"}
                   </h3>
 
                   <div className="space-y-4 mb-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-navy-900 mb-1.5">
-                          {locale === "ar" ? "الاسم الكامل *" : "Full Name *"}
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={patientDetails.name}
-                          onChange={(e) =>
-                            setPatientDetails({ ...patientDetails, name: e.target.value })
-                          }
-                          placeholder={locale === "ar" ? "أدخل اسم المريض" : "Patient full name"}
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
-                        />
-                      </div>
+                    <div>
+                      <label className="block text-xs font-bold text-navy-900 mb-1.5">
+                        {locale === "ar" ? "الاسم الكامل *" : "Full Name *"}
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={patientDetails.name}
+                        onChange={(e) =>
+                          setPatientDetails({ ...patientDetails, name: e.target.value })
+                        }
+                        placeholder={locale === "ar" ? "أدخل اسمك الكريم" : "Enter your full name"}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
+                      />
+                    </div>
 
-                      <div>
-                        <label className="block text-xs font-bold text-navy-900 mb-1.5">
-                          {locale === "ar" ? "رقم الجوال للتأكيد *" : "Phone Number *"}
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          dir="ltr"
-                          value={patientDetails.phone}
-                          onChange={(e) =>
-                            setPatientDetails({ ...patientDetails, phone: e.target.value })
-                          }
-                          placeholder="05X XXX XXXX"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
-                        />
-                      </div>
+                    <div>
+                      <label className="block text-xs font-bold text-navy-900 mb-1.5">
+                        {locale === "ar" ? "رقم الجوال للتأكيد *" : "Phone Number (for confirmation) *"}
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        dir="ltr"
+                        value={patientDetails.phone}
+                        onChange={(e) =>
+                          setPatientDetails({ ...patientDetails, phone: e.target.value })
+                        }
+                        placeholder="+974 55XX XXXX"
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
+                      />
                     </div>
 
                     <div>
@@ -385,7 +385,7 @@ function BookingContent() {
                           ? "جارٍ التأكيد..."
                           : "Confirming..."
                         : locale === "ar"
-                        ? "تأكيد وإرسال الحجز"
+                        ? "تأكيد وإرسال طلب الحجز"
                         : "Submit Booking Request"}
                     </Button>
                   </div>
@@ -406,4 +406,3 @@ export default function BookingPage() {
     </Suspense>
   );
 }
-

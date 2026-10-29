@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Users, HeartHandshake, Calendar } from "lucide-react";
+import { Users, HeartHandshake, Calendar, ShieldCheck } from "lucide-react";
 import { useLocale } from "@/lib/locale";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { businessData } from "@/content/business";
 
 export function AboutCommitmentSection() {
   const { locale } = useLocale();
@@ -13,29 +14,29 @@ export function AboutCommitmentSection() {
     {
       icon: Users,
       emoji: "👨‍⚕️",
-      title: locale === "ar" ? "فريق طبي متخصص وذو خبرة" : "Specialized & Experienced Team",
+      title: locale === "ar" ? "فريق طبي متخصص ومرخص من QCHP" : "Specialized & QCHP-Licensed Clinical Team",
       desc:
         locale === "ar"
-          ? "يتكون مركز مايو لطب الأسنان من فريق متخصص وذي خبرة عالية للعناية بصحة أسنانك وأسنان جميع أفراد عائلتك، بتقديم خيارات علاجية ووقائية متطورة."
-          : "Mayo Dental Center consists of a specialized and experienced team to care for the health of your teeth and the teeth of all your family members.",
+          ? "يضم مركز لوسيدا لطب الأسنان نخبة من الأطباء المتخصصين بقيادة د. عدي الشعار (ماجستير علاج الجذور) للعناية بصحة وجمال أسنانك وأسنان جميع أفراد عائلتك."
+          : "Lucida Dental Center brings together specialized clinical practitioners led by Dr. Adey Al-Shaar (Master's in Endodontics) to care for your family's oral health with precision.",
     },
     {
       icon: HeartHandshake,
       emoji: "🏥",
-      title: locale === "ar" ? "راحتك ورضاك أولويتنا" : "Your Comfort & Satisfaction First",
+      title: locale === "ar" ? "راحتك وهدوء تجربتك أولويتنا" : "Calm, Patient-Centered Clinical Experience",
       desc:
         locale === "ar"
-          ? "راحتك ورضاك هما أهم أولوياتنا. نسعى جاهدين لخلق بيئة مرحبة ومريحة تشعرك بالثقة والاطمئنان في الرعاية التي تتلقاها."
-          : "Your comfort and satisfaction are our top priorities. We strive to create a welcoming environment where you feel comfortable and confident in the care you receive.",
+          ? "راحتك ورضاك هما أولويتنا المطلقة. نحرص على توفير بيئة علاجية هادئة تشعرك بالاطمئنان والشفافية التامة في خطط العلاج والأسعار."
+          : "Your comfort and trust are our highest priorities. We cultivate a calm, modern environment where you feel fully confident in the personalized care you receive.",
     },
     {
       icon: Calendar,
       emoji: "📅",
-      title: locale === "ar" ? "حجز مواعيد سهل وسريع" : "Seamless Appointment Booking",
+      title: locale === "ar" ? "تنسيق مواعيد ميسر وسريع بالدوحة" : "Direct & Flexible Appointment Scheduling",
       desc:
         locale === "ar"
-          ? "جاهز لزيارتك القادمة؟ يمكنك حجز موعدك بسهولة عبر الموقع الإلكتروني أو التحدث معنا مباشرة عبر الواتساب على 0550220715 966+."
-          : "Ready for your next visit? Easily book through our website, or speak directly with our coordination team on WhatsApp.",
+          ? "جاهز لزيارتك القادمة؟ يمكنك حجز موعدك بسهولة عبر الموقع الإلكتروني أو التحدث معنا مباشرة عبر الواتساب على 1553 5531 974+."
+          : "Ready for your next visit? Easily book through our online consultation desk or chat with our front reception directly on WhatsApp at +974 5531 1553.",
     },
   ];
 
@@ -43,12 +44,12 @@ export function AboutCommitmentSection() {
     <section className="py-14 sm:py-20 lg:py-24 bg-white relative overflow-hidden" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Visual Column with Mask Reveal Frame */}
+          {/* Visual Column */}
           <div className="lg:col-span-5 relative">
             <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-slate-100">
               <Image
                 src="/images/generated/hero-clinic-ambiance.webp"
-                alt="Mayo Dental Center welcoming clinic lounge"
+                alt="Lucida Dental Center welcoming clinic lounge in Al Waab"
                 fill
                 sizes="(max-width: 1024px) 100vw, 480px"
                 className="object-cover"
@@ -57,26 +58,26 @@ export function AboutCommitmentSection() {
 
               <div className="absolute bottom-6 inset-x-6 text-white">
                 <span className="text-xs uppercase tracking-wider text-primary-300 font-bold block mb-1">
-                  {locale === "ar" ? "رعاية صحية متكاملة" : "Comprehensive Dental Care"}
+                  {locale === "ar" ? "رعاية أسنان راقية ومتخصصة" : "Specialized Dental Care"}
                 </span>
                 <p className="text-xl font-bold font-display">
                   {locale === "ar"
-                    ? "الجبيل البلد — طريق الملك فيصل"
-                    : "Jubail City Center — King Faisal Rd"}
+                    ? "الوعب، الدوحة — شارع بوحصا"
+                    : "Al Waab, Doha — Bu Hasa Street"}
                 </p>
               </div>
             </div>
 
-            {/* Clinic Operating Hours Badge */}
+            {/* QCHP & Hours Badge */}
             <div className="absolute -bottom-6 -end-6 bg-white rounded-2xl p-4 shadow-xl border border-slate-100 hidden sm:flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-primary-600 text-white flex items-center justify-center font-extrabold text-xs text-center leading-tight">
-                9am<br />9pm
+                QCHP<br />Licensed
               </div>
               <div>
                 <span className="text-xs font-bold text-navy-900 block">
-                  {locale === "ar" ? "السبت – الخميس" : "Saturday – Thursday"}
+                  {locale === "ar" ? "مرخص من وزارة الصحة" : "MOPH Qatar Standards"}
                 </span>
-                <span className="text-[11px] text-slate-500">
+                <span className="text-[11px] text-navy-500">
                   {locale === "ar" ? "نرحب بالمرضى الجدد" : "New patients welcome"}
                 </span>
               </div>
@@ -91,14 +92,14 @@ export function AboutCommitmentSection() {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-navy-950 font-display mb-6 tracking-tight rtl:tracking-normal leading-tight rtl:leading-[1.38] text-balance">
               {locale === "ar"
-                ? "رعاية صحية شاملة لك ولكافة أفراد عائلتك"
+                ? "رعاية طبية راقية ومخصصة لك ولكافة أفراد عائلتك"
                 : "Dedicated Dental Care for You & Your Whole Family"}
             </h2>
 
             <p className="text-navy-600 text-base sm:text-lg leading-relaxed mb-8">
               {locale === "ar"
-                ? "في مركز مايو لطب الأسنان، نؤمن بأن زيارة طبيب الأسنان يجب أن تكون تجربة هادئة ومريحة ومطمئنة. موقعنا في الجبيل، فريقنا الطبي المتخصص هنا لمساعدتك في الحصول على ابتسامة صحية وجميلة والحفاظ عليها."
-                : "At Mayo Dental Center, we believe that visiting the dentist should be a calm, reassuring, and completely comfortable experience. Conveniently located in Al-Jubail, our dentistry team is here to help you achieve and maintain a healthy, beautiful smile."}
+                ? "في مركز لوسيدا لطب الأسنان بالوعب، نؤمن بأن العناية بصحة الأسنان يجب أن تكون تجربة هادئة ومريحة ومبنية على أحدث المعايير الطبية المعتمدة. فريقنا الطبي المتخصص هنا لمساعدتك في الحفاظ على أسنان قوية وابتسامة واثقة ومشرقة."
+                : "At Lucida Dental Center in Al Waab, we believe dental visits should be calm, reassuring, and rooted in proven clinical science. Our dentistry team is dedicated to preserving your natural teeth, restoring function, and creating radiant smiles."}
             </p>
 
             {/* 3 Value Cards */}
@@ -107,7 +108,7 @@ export function AboutCommitmentSection() {
                 <Card
                   key={i}
                   variant="default"
-                  className="p-4 sm:p-5 hover:border-primary-300 transition-colors"
+                  className="p-4 sm:p-5 hover:border-primary-300 transition-colors bg-slate-50/50"
                 >
                   <div className="flex items-start gap-3.5">
                     <div className="w-10 h-10 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center shrink-0 text-xl font-bold">

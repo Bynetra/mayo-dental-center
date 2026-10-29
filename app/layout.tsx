@@ -10,7 +10,7 @@ import { generateClinicSchema } from "@/lib/schema";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -26,9 +26,9 @@ const tajawal = Tajawal({
 const allowIndexing = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
 
 export const metadata: Metadata = {
-  title: "Mayo Dental Center | Premium Dental Care in Jubail, Saudi Arabia",
+  title: "Lucida Dental Center | Precision Dental Care in Al Waab, Doha, Qatar",
   description:
-    "Experience top-notch dental care at Mayo Dental Center in Al-Jubail. Routine checkups, whitening, root canal, orthodontics, Hollywood smile, and dental implants. New patients welcome!",
+    "Experience specialized dental care at Lucida Dental Center in Al Waab, Doha. QCHP-licensed clinic providing Zoom teeth whitening, clear aligners, microscopic root canals, dental implants, and emergency dentistry.",
   robots: allowIndexing
     ? {
         index: true,
@@ -44,53 +44,58 @@ export const metadata: Metadata = {
         },
       },
   keywords: [
-    "Mayo Dental Center",
-    "Dentist Jubail",
-    "طبيب أسنان الجبيل",
-    "مركز مايو لطب الأسنان",
-    "Hollywood Smile Jubail",
-    "Orthodontics Jubail",
-    "Dental Implants Jubail",
-    "Dr. Dixon",
-    "Dental Clinic Jubail City Center",
+    "Lucida Dental Center",
+    "Lucida Dental Doha",
+    "مركز لوسيدا لطب الأسنان",
+    "Dentist Al Waab",
+    "طبيب أسنان الوعب",
+    "طبيب أسنان الدوحة",
+    "Zoom Whitening Doha",
+    "Dental Implants Qatar",
+    "Root Canal Treatment Doha",
+    "Dr. Adey Al-Shaar",
+    "Dr. Mohamed Isa",
+    "Dental Clinic Bu Hasa Street",
+    "QCHP Licensed Dental Clinic",
   ],
-  authors: [{ name: "Mayo Dental Center" }],
-  creator: "Mayo Dental Center",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.mayodentalcenter.com"),
+  authors: [{ name: "Lucida Dental Center" }],
+  creator: "Lucida Dental Center",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://lucidadental.com"),
   alternates: {
     canonical: "/",
     languages: {
-      "en-SA": "/",
-      "ar-SA": "/?lang=ar",
+      "en-QA": "/",
+      "ar-QA": "/?lang=ar",
     },
   },
   openGraph: {
-    title: "Mayo Dental Center | Affordable Dentist | King Faisal North, Jubail",
+    title: "Lucida Dental Center | Precision Dentistry in Al Waab, Doha",
     description:
-      "Experience top-notch dental care at Mayo Dental Center. Conveniently located in Al-Jubail, our dentistry team is here to help you achieve and maintain a healthy, beautiful smile.",
-    url: "https://www.mayodentalcenter.com",
-    siteName: "Mayo Dental Center",
+      "Specialized dental care with clinical precision and gentle touch in Doha, Qatar. QCHP-licensed practice welcoming new patients and families.",
+    url: "https://lucidadental.com",
+    siteName: "Lucida Dental Center",
     images: [
       {
-        url: "/images/original/mayo-logo.png",
+        url: "/images/original/lucida-og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Mayo Dental Center Jubail",
+        alt: "Lucida Dental Center Al Waab Doha",
       },
     ],
-    locale: "en_US",
+    locale: "en_QA",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mayo Dental Center | Jubail, Saudi Arabia",
-    description: "Quality dental care with a gentle touch. Changing smiles in Jubail today.",
-    images: ["/images/original/mayo-logo.png"],
+    title: "Lucida Dental Center | Al Waab, Doha, Qatar",
+    description:
+      "Advanced clinical dental care and personalized smile artistry in Doha. QCHP licensed.",
+    images: ["/images/original/lucida-og-image.jpg"],
   },
   icons: {
-    icon: "/images/original/mayo-logo.png",
-    shortcut: "/images/original/mayo-logo.png",
-    apple: "/images/original/mayo-logo.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -109,7 +114,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col font-sans selection:bg-primary-100 selection:text-primary-900">
+      <body className="min-h-screen flex flex-col font-sans selection:bg-primary-100 selection:text-primary-900 bg-white text-navy-900">
         <LocaleProvider>
           <Navbar />
           <main className="flex-grow">{children}</main>
@@ -121,4 +126,3 @@ export default function RootLayout({
     </html>
   );
 }
-

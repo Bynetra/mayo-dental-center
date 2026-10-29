@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { FileText, Download, ShieldCheck, CreditCard, Sparkles, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
+import { ShieldCheck, CreditCard, Sparkles, CheckCircle2, Building2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -16,11 +17,11 @@ export function InsurancePaymentSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge={locale === "ar" ? "التأمين والدفع" : "Coverage & Payments"}
-          title={locale === "ar" ? "خيارات التأمين وخطط الدفع الميسرة" : "Insurance & Payment Options"}
+          title={locale === "ar" ? "خيارات التأمين الصحي وخطط الدفع بالدوحة" : "Insurance & Payment Options in Qatar"}
           subtitle={
             locale === "ar"
-              ? "في مركز مايو لطب الأسنان، نسعى جاهدين لجعل الرعاية الصحية ميسرة وفي متناول الجميع."
-              : "At Mayo Dental Center, we strive to make healthcare accessible with flexible payment plans and insurance coverage."
+              ? "في مركز لوسيدا لطب الأسنان، نسعى جاهدين لجعل رعاية الأسنان المتميزة في متناول الجميع مع خيارات سداد مرنة."
+              : "At Lucida Dental Center, we strive to make premier dental care accessible with transparent billing, direct insurance, and flexible installment plans."
           }
         />
 
@@ -35,38 +36,38 @@ export function InsurancePaymentSection() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-navy-950">
-                      {locale === "ar" ? "شركاء التأمين الطبي" : "Direct Insurance Partners"}
+                      {locale === "ar" ? "شركاء التأمين الطبي في قطر" : "Qatar Health Insurance Support"}
                     </h3>
                     <span className="text-xs text-primary-700 font-semibold">
-                      {locale === "ar" ? "تغطية مباشرة بدون تعقيد" : "Direct billing without hassle"}
+                      {locale === "ar" ? "تغطية مباشرة ودعم مطالبات الاسترداد" : "Direct billing & reimbursement claims"}
                     </span>
                   </div>
                 </div>
 
                 <p className="text-sm text-navy-600 leading-relaxed mb-6">
                   {locale === "ar"
-                    ? "نعمل بشكل وثيق مع شركائنا في التأمين لتسهيل حصولك على الرعاية المطلوبة. كما نوفر الفواتير والتقارير الطبية الكاملة لأي تأمين خارج الشبكة للاسترداد السريع."
-                    : "We work directly with major health insurers to offer seamless coverage. Comprehensive claims documentation is also provided for out-of-network reimbursement."}
+                    ? "نوفر المطالبات الإلكترونية المباشرة للمشتركين المؤهلين ضمن شبكة الكوت (AlKoot). كما يزودك فريق الاستقبال لدينا بفواتير وتقارير طبية معتمدة ومفصلة لتقديمها لشركات QLM، ميدنت، نكست كير، وكافة برامج التأمين الخاصة للاسترداد السريع."
+                    : "We facilitate direct insurance billing for eligible policyholders under the AlKoot healthcare network. For QLM, Mednet, Nextcare, and corporate plans, our desk provides standardized, stamped diagnostic claims documentation for rapid reimbursement."}
                 </p>
 
-                {/* Insurance Logos Row */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                {/* Insurance Providers Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
                   {businessData.insurance.map((ins) => (
                     <div
                       key={ins.id}
-                      className="p-4 rounded-xl bg-slate-50 border border-slate-100 flex flex-col items-center justify-center text-center"
+                      className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between"
                     >
-                      <div className="relative w-28 h-10 mb-2">
-                        <Image
-                          src={ins.logo}
-                          alt={ins.name}
-                          fill
-                          className="object-contain"
-                        />
+                      <div className="flex items-center gap-2 mb-2">
+                        <Building2 className="w-4 h-4 text-primary-600 shrink-0" />
+                        <span className="text-sm font-bold text-navy-900">
+                          {locale === "ar" ? ins.nameAr : ins.name}
+                        </span>
                       </div>
-                      <span className="text-xs font-bold text-navy-900">
-                        {locale === "ar" ? ins.nameAr : ins.name}
-                      </span>
+                      {ins.note && (
+                        <p className="text-[11px] text-navy-600 leading-tight">
+                          {ins.note[locale]}
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -76,8 +77,8 @@ export function InsurancePaymentSection() {
                 <CheckCircle2 className="w-4 h-4 text-primary-600 shrink-0" />
                 <span>
                   {locale === "ar"
-                    ? "نعمل باستمرار على إضافة شركاء تأمين جدد"
-                    : "Constantly expanding our approved provider network"}
+                    ? "فريقنا الطبي مستعد لمساعدتك في استيفاء متطلبات شركة تأمينك"
+                    : "Our front desk assists with claim form completion and diagnostic codes"}
                 </span>
               </div>
             </Card>
@@ -93,88 +94,59 @@ export function InsurancePaymentSection() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-navy-950">
-                      {locale === "ar" ? "طرق الدفع والتقسيط عبر تابي" : "Payment Methods & Tabby"}
+                      {locale === "ar" ? "طرق الدفع والتقسيط عبر تابي" : "Payment Methods & Tabby Installments"}
                     </h3>
                     <span className="text-xs text-accent-700 font-semibold">
-                      {locale === "ar" ? "قسّم فاتورتك على 4 دفعات" : "Split into 4 interest-free payments"}
+                      {locale === "ar" ? "قسّم فاتورتك على 4 دفعات بدون فوائد" : "Split into 4 interest-free monthly payments"}
                     </span>
                   </div>
                 </div>
 
                 <p className="text-sm text-navy-600 leading-relaxed mb-6">
                   {locale === "ar"
-                    ? "نقبل كافة البطاقات الائتمانية العالمية (فيزا وماستركارد)، بالإضافة إلى خدمة 'تابي' لتقسيط تكاليف العلاج دون أي فوائد أو أعباء مالية مفاجئة."
-                    : "We accept Visa, Mastercard, and Tabby installment options. Split your dental treatments into manageable, interest-free monthly payments."}
+                    ? "نسهل عليك إجراءات السداد في العيادة بقبول جميع بطاقات الصراف الآلي القطرية (نافس)، بطاقات فيزا وماستركارد، بالإضافة لخيار التقسيط المريح عبر تابي لتوزيع تكلفة العلاج على 4 دفعات دون أي فوائد أو رسوم خفية."
+                    : "We accept all major payment systems at our reception, including Qatari NAPS debit cards, Visa, and Mastercard. Additionally, our Tabby partnership lets you comfortably split treatment costs into 4 interest-free payments."}
                 </p>
 
-                {/* Payment Logos Row */}
-                <div className="grid grid-cols-3 gap-3 mb-6">
-                  {businessData.paymentMethods.map((pay) => (
+                {/* Payment Methods Badges */}
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {businessData.paymentMethods.map((pm) => (
                     <div
-                      key={pay.id}
-                      className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col items-center justify-center text-center"
+                      key={pm.id}
+                      className={`p-3.5 rounded-xl border flex items-center gap-2.5 ${
+                        pm.isInstallment
+                          ? "bg-accent-50/50 border-accent-200"
+                          : "bg-slate-50 border-slate-200/80"
+                      }`}
                     >
-                      <div className="relative w-20 h-8 mb-1.5">
-                        <Image
-                          src={pay.logo}
-                          alt={pay.name}
-                          fill
-                          className="object-contain"
-                        />
+                      <CreditCard className="w-4 h-4 text-primary-600 shrink-0" />
+                      <div>
+                        <span className="text-xs font-bold text-navy-900 block">
+                          {locale === "ar" ? pm.nameAr : pm.name}
+                        </span>
+                        {pm.isInstallment && (
+                          <span className="text-[10px] font-bold text-accent-700">
+                            {locale === "ar" ? "تقسيط بدون فوائد" : "0% Interest"}
+                          </span>
+                        )}
                       </div>
-                      <span className="text-xs font-bold text-navy-900 truncate max-w-full">
-                        {locale === "ar" ? pay.nameAr : pay.name}
-                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 text-xs text-navy-500 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-accent-600 shrink-0" />
-                <span>
-                  {locale === "ar"
-                    ? "اختر تابي عند الاستقبال وقسّم الدفعات بسهولة"
-                    : "Zero interest or hidden fees when splitting with Tabby"}
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs text-navy-500">
+                  {locale === "ar" ? "تسعير شفاف دون أي رسوم مخفية" : "Transparent clinical fees with no surprise costs"}
                 </span>
+                <Link href="/book">
+                  <Button size="sm">
+                    {locale === "ar" ? "احجز استشارتك" : "Book Visit"}
+                  </Button>
+                </Link>
               </div>
             </Card>
           </div>
-        </div>
-
-        {/* New Patient Registration Document Download Banner */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-primary-900 to-navy-950 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-primary-300 shrink-0 mt-1">
-              <FileText className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl font-bold font-display mb-1">
-                {locale === "ar" ? "استمارة تسجيل مريض جديد" : "New Patient Registration Form"}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-                {locale === "ar"
-                  ? "وفر وقتك في العيادة عبر تحميل الاستمارة الرسمية وتعبئتها مسبقاً قبل موعدك الأول."
-                  : "Save time at your first visit. Download and complete our official new patient registration form before arriving."}
-              </p>
-            </div>
-          </div>
-
-          <a
-            href="/docs/new-patient-registration.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0"
-          >
-            <Button
-              variant="secondary"
-              size="lg"
-              className="bg-white text-navy-950 hover:bg-slate-100 font-bold shadow-md"
-              icon={<Download className="w-4 h-4" />}
-            >
-              {locale === "ar" ? "تحميل الاستمارة (PDF)" : "Download Form (PDF)"}
-            </Button>
-          </a>
         </div>
       </div>
     </section>

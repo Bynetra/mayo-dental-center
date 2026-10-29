@@ -7,8 +7,8 @@ import {
   Mail,
   MapPin,
   Clock,
-  FileText,
   ArrowUpRight,
+  ShieldCheck,
 } from "lucide-react";
 import { businessData } from "@/content/business";
 import { servicesData } from "@/content/services";
@@ -26,8 +26,8 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-3 mb-5 group">
               <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white/10 p-1 border border-white/20">
                 <Image
-                  src="/images/original/mayo-logo.png"
-                  alt="Mayo Dental Center"
+                  src="/images/original/lucida-logo.png"
+                  alt="Lucida Dental Center Logo"
                   fill
                   className="object-contain p-1"
                 />
@@ -41,30 +41,10 @@ export function Footer() {
               {businessData.tagline[locale]}
             </p>
 
-            {/* Registration Form Quick Action */}
-            <div className="p-4 rounded-2xl bg-navy-900/80 border border-navy-800 mb-6">
-              <div className="flex items-start gap-3">
-                <FileText className="w-5 h-5 text-primary-400 shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-xs font-bold text-white uppercase tracking-wider">
-                    {locale === "ar" ? "استمارة مريض جديد" : "New Patient Registration"}
-                  </p>
-                  <p className="text-xs text-slate-300 mt-1">
-                    {locale === "ar"
-                      ? "قم بتحميل الاستمارة وتعبئتها لتسريع موعدك الأول."
-                      : "Download and print our official intake form before your visit."}
-                  </p>
-                  <a
-                    href="/docs/new-patient-registration.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary-300 hover:text-white mt-2.5 transition-colors py-1"
-                  >
-                    <span>{locale === "ar" ? "تحميل الاستمارة (PDF)" : "Download Form (PDF)"}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
+            {/* QCHP License Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-primary-300 font-semibold mb-6">
+              <ShieldCheck className="w-4 h-4 text-accent-500 shrink-0" />
+              <span>{businessData.license[locale]}</span>
             </div>
 
             {/* Social Channels */}
@@ -83,7 +63,7 @@ export function Footer() {
                 </svg>
               </Link>
               <Link
-                href="https://facebook.com"
+                href={businessData.contact.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-navy-900 hover:bg-primary-600 text-slate-200 hover:text-white flex items-center justify-center transition-colors border border-navy-800"
@@ -96,87 +76,110 @@ export function Footer() {
             </div>
           </div>
 
-          {/* All 10 Services Quick Links */}
+          {/* Clinical Treatments Quick Links */}
           <div className="lg:col-span-5">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-primary-300 mb-5">
-              {locale === "ar" ? "خدمات طب الأسنان" : "Our Dental Services"}
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-5 font-display">
+              {locale === "ar" ? "الخدمات والعلاجات السريرية" : "Clinical Treatments"}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1">
-              {servicesData.map((s) => (
-                <Link
-                  key={s.id}
-                  href={`/services/${s.slug}`}
-                  className="text-xs sm:text-sm text-slate-300 hover:text-white transition-colors flex items-center gap-1.5 py-1.5"
-                >
-                  <span className="w-1 h-1 rounded-full bg-primary-400 shrink-0" />
-                  <span className="truncate">{s.title[locale]}</span>
-                </Link>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-4">
+              {servicesData.map((svc) => (
+                <li key={svc.id}>
+                  <Link
+                    href={`/services/${svc.slug}`}
+                    className="text-xs sm:text-sm text-slate-300 hover:text-primary-300 transition-colors flex items-center gap-1.5"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary-400 shrink-0" />
+                    <span>{svc.title[locale]}</span>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Contact, Location & Hours Column */}
-          <div className="lg:col-span-3">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-primary-300 mb-5">
-              {locale === "ar" ? "التواصل وساعات العمل" : "Contact & Hours"}
+          {/* Contact Details & Doha Location */}
+          <div className="lg:col-span-3 flex flex-col">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-5 font-display">
+              {locale === "ar" ? "الموقع ومعلومات الاتصال" : "Contact & Location"}
             </h3>
-            <ul className="space-y-4 text-xs sm:text-sm">
-              <li className="flex items-start gap-2.5 text-slate-300">
-                <MapPin className="w-4 h-4 text-primary-400 shrink-0 mt-0.5" />
-                <span>{businessData.location.address[locale]}</span>
-              </li>
 
-              <li className="flex items-center gap-2.5 text-slate-300">
+            <div className="flex flex-col gap-3.5 text-xs sm:text-sm text-slate-300">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-primary-400 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-white">{businessData.location.address[locale]}</p>
+                  <a
+                    href={businessData.location.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-300 hover:text-primary-200 inline-flex items-center gap-1 text-xs mt-1"
+                  >
+                    <span>{locale === "ar" ? "عرض على خرائط Google" : "View on Google Maps"}</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-primary-400 shrink-0" />
-                <div className="flex flex-col gap-1 [unicode-bidi:isolate]" dir="ltr">
-                  <Link href={`tel:${businessData.contact.phones[0]}`} className="hover:text-white py-1 inline-block text-slate-200 font-sans">
-                    {businessData.contact.phones[0]}
+                <div className="flex flex-col gap-0.5">
+                  <Link
+                    href={`tel:${businessData.contact.phones[0]}`}
+                    className="hover:text-white transition-colors"
+                  >
+                    <span dir="ltr">{businessData.contact.phones[0]}</span> (Landline)
                   </Link>
-                  <Link href={`tel:${businessData.contact.phones[1]}`} className="hover:text-white text-xs text-slate-300 py-1 inline-block font-sans">
-                    {businessData.contact.phones[1]}
+                  <Link
+                    href={`https://wa.me/${businessData.contact.whatsapp.replace("+", "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors text-emerald-400"
+                  >
+                    <span dir="ltr">{businessData.contact.whatsappFormatted}</span> (WhatsApp)
                   </Link>
                 </div>
-              </li>
+              </div>
 
-              <li className="flex items-center gap-2.5 text-slate-300">
+              <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-primary-400 shrink-0" />
-                <Link href={`mailto:${businessData.contact.email}`} className="hover:text-white truncate py-1 inline-block [unicode-bidi:isolate] font-sans" dir="ltr">
+                <Link
+                  href={`mailto:${businessData.contact.email}`}
+                  className="hover:text-white transition-colors"
+                >
                   {businessData.contact.email}
                 </Link>
-              </li>
+              </div>
 
-              <li className="pt-2 border-t border-navy-900">
-                <div className="flex items-start gap-2.5 text-slate-300">
-                  <Clock className="w-4 h-4 text-primary-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-semibold block text-white">
-                      {locale === "ar" ? "السبت – الخميس:" : "Sat – Thu:"}
-                    </span>
-                    <span className="text-xs text-slate-300">
-                      9:00 AM – 9:00 PM
-                    </span>
-                    <span className="block text-xs text-amber-400 font-medium mt-1">
-                      {locale === "ar" ? "الجمعة: مغلق" : "Friday: Closed"}
-                    </span>
-                  </div>
+              <div className="flex items-start gap-2.5 pt-2 border-t border-navy-900">
+                <Clock className="w-4 h-4 text-primary-400 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-white">
+                    {locale === "ar"
+                      ? "السبت – الأربعاء: 9:00 ص – 1:00 م و 4:30 م – 8:30 م"
+                      : "Sat – Wed: 9:00 AM – 1:00 PM & 4:30 PM – 8:30 PM"}
+                  </p>
+                  <p className="text-slate-400 text-xs mt-0.5">
+                    {locale === "ar"
+                      ? "الخميس: 9:00 ص – 5:00 م | الجمعة: مغلق (طوارئ عبر الواتساب)"
+                      : "Thu: 9:00 AM – 5:00 PM | Fri: Closed (Emergency on WhatsApp)"}
+                  </p>
                 </div>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Legal / Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300">
-          <p>{businessData.name[locale]} © {new Date().getFullYear()}. All rights reserved.</p>
+        {/* Bottom Legal & Copyright Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p>© {new Date().getFullYear()} Lucida Dental Center. All rights reserved. Doha, Qatar.</p>
           <div className="flex items-center gap-6">
-            <Link href="/about" className="text-slate-300 hover:text-white transition-colors py-1.5 inline-block">
-              {locale === "ar" ? "من نحن" : "About"}
+            <Link href="/about" className="hover:text-white transition-colors">
+              {locale === "ar" ? "عن المركز" : "About"}
             </Link>
-            <Link href="/patient-info" className="text-slate-300 hover:text-white transition-colors py-1.5 inline-block">
-              {locale === "ar" ? "معلومات التأمين والتسجيل" : "Insurance & Patient Info"}
+            <Link href="/services" className="hover:text-white transition-colors">
+              {locale === "ar" ? "العلاجات والخدمات" : "Treatments"}
             </Link>
-            <Link href="/contact" className="text-slate-300 hover:text-white transition-colors py-1.5 inline-block">
-              {locale === "ar" ? "خريطة الموقع" : "Location Map"}
+            <Link href="/contact" className="hover:text-white transition-colors">
+              {locale === "ar" ? "حجز واستفسار" : "Enquiries"}
             </Link>
           </div>
         </div>

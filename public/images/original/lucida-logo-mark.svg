@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Cyan gradient for upper ring and tooth left -->
+    <linearGradient id="lucidaCyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C0E8" />
+      <stop offset="100%" stop-color="#0789A4" />
+    </linearGradient>
+    <!-- Green gradient for lower ring and tooth right -->
+    <linearGradient id="lucidaGreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#99D342" />
+      <stop offset="100%" stop-color="#70A72B" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(170, 170) rotate(-22) translate(-170, -170)">
+    <!-- Outer Ring Upper Arc (Cyan) -->
+    <path 
+      d="M 65,170 A 105,150 0 0,1 275,170" 
+      stroke="url(#lucidaCyanGrad)" 
+      stroke-width="7.5" 
+      stroke-linecap="round" 
+    />
+    <!-- Outer Ring Lower Arc (Green) -->
+    <path 
+      d="M 275,170 A 105,150 0 0,1 65,170" 
+      stroke="url(#lucidaGreenGrad)" 
+      stroke-width="7.5" 
+      stroke-linecap="round" 
+    />
+
+    <!-- Inner Stylized Tooth - Left Cyan Crest & Root -->
+    <path 
+      d="M 125,108 C 112,135 106,170 120,205 C 130,228 148,245 170,250 C 158,235 152,215 150,195 C 146,165 156,135 170,118 C 155,104 136,102 125,108 Z" 
+      fill="url(#lucidaCyanGrad)" 
+    />
+
+    <!-- Inner Stylized Tooth - Right Green Crest & Enamel Arc -->
+    <path 
+      d="M 170,118 C 190,105 212,108 222,122 C 238,145 236,182 220,215 C 208,238 188,248 170,250 C 182,238 195,220 200,195 C 208,162 196,135 170,118 Z" 
+      fill="url(#lucidaGreenGrad)" 
+    />
+  </g>
+</svg>

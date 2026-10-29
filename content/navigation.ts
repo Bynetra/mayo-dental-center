@@ -24,14 +24,8 @@ export const mainNavItems: NavItem[] = [
     label: { en: "About", ar: "من نحن" },
   },
   {
-    id: "patient-info",
-    href: "/patient-info",
-    label: { en: "Patient Info", ar: "معلومات المرضى" },
-  },
-  {
     id: "contact",
     href: "/contact",
     label: { en: "Contact", ar: "اتصل بنا" },
   },
 ];
-

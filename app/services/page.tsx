@@ -41,8 +41,8 @@ export default function ServicesOverviewPage() {
           title={locale === "ar" ? "كافة خدمات طب وتجميل الأسنان" : "Complete Dental Treatment Services"}
           subtitle={
             locale === "ar"
-              ? "استعرض جميع الإجراءات العلاجية والتجميلية والتقويمية المقدمة في مركز مايو لطب الأسنان بالجبيل."
-              : "Explore our full range of modern dental care treatments performed by experienced clinicians in Jubail."
+              ? "استعرض جميع الإجراءات العلاجية والتجميلية والتقويمية المقدمة في مركز لوسيدا لطب الأسنان بالوعب، الدوحة."
+              : "Explore our full range of modern dental care treatments performed by experienced clinicians in Al Waab, Doha."
           }
         />
 
@@ -78,7 +78,7 @@ export default function ServicesOverviewPage() {
           <p className="text-xs sm:text-sm text-primary-200 mb-6 max-w-lg mx-auto">
             {locale === "ar"
               ? "احجز فحصاً عاماً مع تخطيط العلاج، وسيقوم أطباؤنا بفحص حالتك وتقديم النصح الأمثل بشفافية."
-              : "Schedule a comprehensive general checkup with Dr. Dixon to diagnose your needs and formulate a custom treatment plan."}
+              : "Schedule a comprehensive consultation with Dr. Adey Al-Shaar and our team to diagnose your needs and formulate a custom treatment plan."}
           </p>
           <Link href="/book">
             <Button size="lg" className="bg-white text-primary-900 hover:bg-primary-50 font-bold">
@@ -90,4 +90,3 @@ export default function ServicesOverviewPage() {
     </div>
   );
 }
-

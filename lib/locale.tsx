@@ -1,8 +1,10 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { translations, type Locale } from "@/content/translations";
+import { translations } from "@/content/translations";
 import { getDirection } from "@/lib/utils";
+
+export type Locale = "en" | "ar";
 
 interface LocaleContextType {
   locale: Locale;
@@ -29,8 +31,10 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
       }
     }
 
-    // Check saved preference or URL param
-    const saved = localStorage.getItem("mayo_locale") as Locale | null;
+    // Check saved preference (lucida_locale or lucida-lang)
+    const saved = (localStorage.getItem("lucida_locale") ||
+      localStorage.getItem("lucida-lang")) as Locale | null;
+
     if (saved && (saved === "en" || saved === "ar")) {
       setLocaleState(saved);
     } else {
@@ -44,7 +48,8 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
 
   const setLocale = (loc: Locale) => {
     setLocaleState(loc);
-    localStorage.setItem("mayo_locale", loc);
+    localStorage.setItem("lucida_locale", loc);
+    localStorage.setItem("lucida-lang", loc);
     document.documentElement.lang = loc;
     document.documentElement.dir = getDirection(loc);
   };

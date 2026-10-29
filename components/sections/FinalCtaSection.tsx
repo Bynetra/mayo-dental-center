@@ -16,7 +16,7 @@ export function FinalCtaSection() {
       <div className="absolute inset-0 -z-10">
         <Image
           src="/images/original/cta-banner-bg.jpg"
-          alt="Mayo Dental Center dental clinic treatment environment"
+          alt="Lucida Dental Center clinical care environment in Al Waab"
           fill
           sizes="100vw"
           className="object-cover opacity-20 filter saturate-50"
@@ -37,8 +37,8 @@ export function FinalCtaSection() {
 
         <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
           {locale === "ar"
-            ? "سواء كنت بحاجة لفحص وقائي دوري، أو تنظيف للأسنان، أو استشارة تجميلية وتقويم مع د. ديكسون، نحن هنا لمساعدتك في الجبيل."
-            : "Whether you need a routine cleaning, orthodontic consultation, or urgent dental care, our team is ready to welcome you."}
+            ? "سواء كنت بحاجة لفحص وقائي دوري، تنظيف للأسنان، تبييض زوم، أو علاج جذور متخصص بإشراف د. عدي الشعار، فريقنا في الوعب بالدوحة جاهز لاستقبالك."
+            : "Whether you need a routine checkup, Philips Zoom whitening, specialized microscopic root canal treatment, or clear aligners, our clinical team in Al Waab is ready to welcome you."}
         </p>
 
         {/* Action Buttons */}
@@ -52,8 +52,8 @@ export function FinalCtaSection() {
           <Link
             href={`https://wa.me/${businessData.contact.whatsapp.replace("+", "")}?text=${encodeURIComponent(
               locale === "ar"
-                ? "مرحباً، أود حجز موعد في مركز مايو لطب الأسنان"
-                : "Hello, I would like to schedule an appointment at Mayo Dental Center"
+                ? "مرحباً، أود حجز موعد استشارة في مركز لوسيدا لطب الأسنان بالوعب"
+                : "Hello, I would like to schedule a consultation at Lucida Dental Center in Al Waab"
             )}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -82,4 +82,3 @@ export function FinalCtaSection() {
     </section>
   );
 }
-

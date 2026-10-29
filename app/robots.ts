@@ -18,7 +18,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://www.mayodentalcenter.com/sitemap.xml",
+    sitemap: "https://lucidadental.com/sitemap.xml",
   };
 }
-

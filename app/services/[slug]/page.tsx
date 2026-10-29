@@ -37,10 +37,10 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   if (!service) return { title: "Service Not Found" };
 
   return {
-    title: `${service.title.en} | ${service.title.ar} | Mayo Dental Center Jubail`,
+    title: `${service.title.en} | ${service.title.ar} | Lucida Dental Center Doha`,
     description: service.shortDescription.en,
     openGraph: {
-      title: `${service.title.en} | Mayo Dental Center`,
+      title: `${service.title.en} | Lucida Dental Center Doha`,
       description: service.shortDescription.en,
       images: [{ url: service.image }],
     },
@@ -112,7 +112,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
                 <Link
                   href={`https://wa.me/${businessData.contact.whatsapp.replace("+", "")}?text=${encodeURIComponent(
-                    `Hello, I would like to inquire about booking: ${service.title.en}`
+                    `Hello, I would like to inquire about booking: ${service.title.en} at Lucida Dental Center`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -275,11 +275,11 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
                   <span className="text-navy-500">Clinician:</span>
-                  <span className="font-bold text-primary-700">Dr. Dixon & Team</span>
+                  <span className="font-bold text-primary-700">Dr. Adey Al-Shaar & Team</span>
                 </div>
                 <div className="flex justify-between py-1">
                   <span className="text-navy-500">Location:</span>
-                  <span className="font-bold text-navy-900">King Faisal North, Jubail</span>
+                  <span className="font-bold text-navy-900">Bu Hasa St, Al Waab, Doha</span>
                 </div>
               </div>
 
@@ -292,7 +292,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
                 <Link
                   href={`https://wa.me/${businessData.contact.whatsapp.replace("+", "")}?text=${encodeURIComponent(
-                    `Hello, I would like to book an appointment for: ${service.title.en}`
+                    `Hello, I would like to book an appointment for: ${service.title.en} at Lucida Dental Center`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -324,4 +324,3 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     </div>
   );
 }
-

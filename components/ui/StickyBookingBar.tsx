@@ -15,12 +15,10 @@ export function StickyBookingBar() {
   useEffect(() => {
     setIsOpen(isClinicOpenNow());
 
-    // Observe hero element so the bar strictly reveals only AFTER scrolling past hero
     const heroEl = document.getElementById("hero") || document.querySelector("section");
     if (heroEl && "IntersectionObserver" in window) {
       const observer = new IntersectionObserver(
         ([entry]) => {
-          // Visible only when hero is scrolled past
           setIsVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
         },
         { threshold: 0.05, rootMargin: "-80px 0px 0px 0px" }
@@ -64,7 +62,7 @@ export function StickyBookingBar() {
                 : "Currently Closed"}
             </span>
             <span className="text-[10px] text-slate-300 hidden sm:inline rtl:tracking-normal">
-              {locale === "ar" ? "السبت-الخميس: 9 ص - 9 م" : "Sat-Thu 9am - 9pm"}
+              {locale === "ar" ? "السبت–الأربعاء 9–1 و 4:30–8:30" : "Sat–Wed 9–1 & 4:30–8:30"}
             </span>
           </div>
         </div>
@@ -101,4 +99,3 @@ export function StickyBookingBar() {
     </div>
   );
 }
-

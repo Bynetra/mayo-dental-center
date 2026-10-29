@@ -111,11 +111,11 @@ export function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge={locale === "ar" ? "تواصل معنا" : "Contact & Visit"}
-          title={locale === "ar" ? "تفضل بزيارتنا أو راسلنا" : "Get In Touch & Visit Our Clinic"}
+          title={locale === "ar" ? "تفضل بزيارتنا في الوعب أو راسلنا" : "Get In Touch & Visit Our Clinic"}
           subtitle={
             locale === "ar"
-              ? "فريق الاستقبال والتنسيق الطبي بمركز مايو متاح دائماً للإجابة على استفساراتكم وترتيب مواعيدكم."
-              : "Reach out with any questions or find driving directions to our center in Jubail City Center."
+              ? "فريق الاستقبال والتنسيق الطبي بمركز لوسيدا متاح دائماً للإجابة على استفساراتكم وترتيب مواعيدكم."
+              : "Reach out with any questions or find driving directions to our clinic on Bu Hasa Street in Al Waab, Doha."
           }
         />
 
@@ -135,8 +135,8 @@ export function ContactSection() {
                   </h3>
                   <p className="text-sm sm:text-base text-navy-600 max-w-md mx-auto mb-6">
                     {locale === "ar"
-                      ? "تم استلام طلبك بنجاح من قبل مكتب التنسيق الطبي وسيقوم فريقنا بالاتصال بك أو مراسلتك عبر الواتساب لتأكيد التفاصيل."
-                      : "We have received your message. Our reception team will reach out promptly via phone or WhatsApp to assist you."}
+                      ? "تم استلام طلبك بنجاح وسيقوم فريق الاستقبال الطبي بالاتصال بك أو مراسلتك عبر الواتساب لتأكيد موعدك."
+                      : "We have received your message. Our reception team in Al Waab will reach out promptly via phone or WhatsApp to assist you."}
                   </p>
                   <div className="flex flex-wrap items-center justify-center gap-3">
                     {whatsappFallbackUrl && (
@@ -193,12 +193,12 @@ export function ContactSection() {
                   </div>
                   <div className="border-b border-slate-100 pb-4 mb-4">
                     <h3 className="text-xl font-bold text-navy-950">
-                      {locale === "ar" ? "أرسل رسالة فورية" : "Send Us a Message"}
+                      {locale === "ar" ? "أرسل طلب استشارة فورية" : "Send Us an Enquiry"}
                     </h3>
                     <p className="text-xs text-navy-500 mt-1">
                       {locale === "ar"
-                        ? "املأ النموذج التالي وسيقوم فريقنا بالرد عليك خلال ساعات العمل."
-                        : "Fill in the details below and we will contact you shortly."}
+                        ? "املأ النموذج التالي وسيقوم فريقنا بالرد عليك لتأكيد الموعد المناسب."
+                        : "Fill in the details below and our clinic reception will contact you shortly."}
                     </p>
                   </div>
 
@@ -238,7 +238,7 @@ export function ContactSection() {
                         dir="ltr"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="05X XXX XXXX"
+                        placeholder="+974 55XX XXXX"
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
                       />
                     </div>
@@ -263,7 +263,7 @@ export function ContactSection() {
                     {/* Service */}
                     <div>
                       <label htmlFor="contact-service" className="block text-xs font-bold text-navy-900 mb-1.5">
-                        {locale === "ar" ? "الخدمة المطلوبة" : "Interested Service"}
+                        {locale === "ar" ? "الخدمة المطلوبة" : "Interested Treatment"}
                       </label>
                       <select
                         id="contact-service"
@@ -272,7 +272,7 @@ export function ContactSection() {
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
                       >
                         <option value="">
-                          {locale === "ar" ? "-- اختر الخدمة --" : "-- Select a service --"}
+                          {locale === "ar" ? "-- اختر العلاج المطلوب --" : "-- Select a treatment --"}
                         </option>
                         {servicesData.map((s) => (
                           <option key={s.id} value={s.slug}>
@@ -328,8 +328,8 @@ export function ContactSection() {
                         ? "جارٍ الإرسال..."
                         : "Sending..."
                       : locale === "ar"
-                      ? "إرسال الرسالة"
-                      : "Send Message"}
+                      ? "إرسال طلب الاستشارة"
+                      : "Send Enquiry"}
                   </Button>
                 </form>
               )}
@@ -358,13 +358,27 @@ export function ContactSection() {
                 </Badge>
               </div>
 
-              <div className="space-y-2 text-xs sm:text-sm">
+              <div className="space-y-2.5 text-xs sm:text-sm">
                 <div className="flex justify-between items-center py-1">
                   <span className="font-semibold text-navy-900">
-                    {locale === "ar" ? "السبت – الخميس:" : "Saturday – Thursday:"}
+                    {locale === "ar" ? "السبت – الأربعاء:" : "Saturday – Wednesday:"}
+                  </span>
+                  <div className="text-end">
+                    <span className="text-primary-700 font-bold block">
+                      9:00 AM – 1:00 PM
+                    </span>
+                    <span className="text-primary-700 font-bold block">
+                      4:30 PM – 8:30 PM
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center py-1 border-t border-slate-100">
+                  <span className="font-semibold text-navy-900">
+                    {locale === "ar" ? "يوم الخميس:" : "Thursday:"}
                   </span>
                   <span className="text-primary-700 font-bold">
-                    9:00 AM – 9:00 PM
+                    9:00 AM – 5:00 PM
                   </span>
                 </div>
 
@@ -417,7 +431,7 @@ export function ContactSection() {
               </div>
             </Card>
 
-            {/* Embedded Google Map (Fail-safe with lazy loading, 8s timeout, and fallback card) */}
+            {/* Embedded Google Map */}
             <div
               ref={mapRef}
               className="rounded-3xl overflow-hidden border border-slate-200/90 shadow-card aspect-[16/10] relative bg-slate-100 flex items-center justify-center"
@@ -425,7 +439,7 @@ export function ContactSection() {
               {showMap && !mapFailed ? (
                 <>
                   <iframe
-                    title="Mayo Dental Center Jubail Google Map Location"
+                    title="Lucida Dental Center Al Waab Google Map Location"
                     src={businessData.location.googleMapsEmbedUrl}
                     width="100%"
                     height="100%"

@@ -10,8 +10,8 @@ export function StickyMobileBottomBar() {
 
   const whatsappMessage =
     locale === "ar"
-      ? "مرحباً، أود حجز موعد في مركز مايو لطب الأسنان بالجبيل"
-      : "Hello, I would like to book an appointment at Mayo Dental Center Jubail";
+      ? "مرحباً، أود حجز موعد في مركز لوسيدا لطب الأسنان بالوعب"
+      : "Hello, I would like to book an appointment at Lucida Dental Center in Al Waab";
 
   return (
     <div className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200/90 py-2.5 px-3 shadow-[0_-4px_24px_rgba(15,23,42,0.08)]">
@@ -59,4 +59,3 @@ export function StickyMobileBottomBar() {
     </div>
   );
 }
-

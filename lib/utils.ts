@@ -10,15 +10,17 @@ export function getDirection(locale: string): "ltr" | "rtl" {
 }
 
 /**
- * Calculates whether Mayo Dental Center is currently open in Saudi Arabia time (Asia/Riyadh, GMT+3).
- * Schedule: Sat-Thu 9:00 to 21:00, Friday closed.
+ * Calculates whether Lucida Dental Center is currently open in Qatar time (Asia/Qatar, GMT+3).
+ * Schedule:
+ * - Saturday through Wednesday: 9:00 AM – 1:00 PM and 4:30 PM – 8:30 PM
+ * - Thursday: 9:00 AM – 5:00 PM
+ * - Friday: Closed
  */
 export function isClinicOpenNow(): boolean {
   try {
-    // Current time in Saudi Arabia
     const now = new Date();
     const formatter = new Intl.DateTimeFormat("en-US", {
-      timeZone: "Asia/Riyadh",
+      timeZone: "Asia/Qatar",
       weekday: "short",
       hour: "numeric",
       minute: "numeric",
@@ -27,20 +29,27 @@ export function isClinicOpenNow(): boolean {
     const parts = formatter.formatToParts(now);
     const weekday = parts.find((p) => p.type === "weekday")?.value;
     const hour = parseInt(parts.find((p) => p.type === "hour")?.value || "0", 10);
+    const minute = parseInt(parts.find((p) => p.type === "minute")?.value || "0", 10);
+    const timeInMinutes = hour * 60 + minute;
 
     // Closed on Friday
     if (weekday === "Fri") {
       return false;
     }
 
-    // Open 9:00 (09) to 21:00 (21)
-    if (hour >= 9 && hour < 21) {
-      return true;
+    // Thursday: 9:00 AM to 5:00 PM (540 to 1020 minutes)
+    if (weekday === "Thu") {
+      return timeInMinutes >= 9 * 60 && timeInMinutes < 17 * 60;
     }
 
-    return false;
+    // Saturday through Wednesday (split shift):
+    // Morning: 9:00 AM – 1:00 PM (540 to 780 minutes)
+    // Evening: 4:30 PM – 8:30 PM (990 to 1230 minutes)
+    const isMorningShift = timeInMinutes >= 9 * 60 && timeInMinutes < 13 * 60;
+    const isEveningShift = timeInMinutes >= 16 * 60 + 30 && timeInMinutes < 20 * 60 + 30;
+
+    return isMorningShift || isEveningShift;
   } catch {
     return true; // Graceful fallback
   }
 }
-

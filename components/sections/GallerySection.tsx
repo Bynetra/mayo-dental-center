@@ -16,28 +16,33 @@ export function GallerySection() {
   const galleryImages = [
     {
       src: "/images/original/gallery-1.webp",
-      alt: "Mayo Dental Center collection photo 1",
-      title: locale === "ar" ? "معرض المركز — صورة 1" : "Clinic Showcase — Photo 1",
+      alt: "Lucida Dental Center patient treatment suite in Al Waab",
+      title: locale === "ar" ? "عيادة العلاج السريري المتخصصة" : "Specialized Clinical Treatment Suite",
     },
     {
       src: "/images/original/gallery-2.webp",
-      alt: "Mayo Dental Center collection photo 2",
-      title: locale === "ar" ? "معرض المركز — صورة 2" : "Clinic Showcase — Photo 2",
+      alt: "Lucida Dental Center digital sterilization and hygiene standards",
+      title: locale === "ar" ? "محطة التعقيم والوقاية السريرية" : "Sterilization & Hygiene Standards",
     },
     {
       src: "/images/original/gallery-3.webp",
-      alt: "Mayo Dental Center collection photo 3",
-      title: locale === "ar" ? "معرض المركز — صورة 3" : "Clinic Showcase — Photo 3",
+      alt: "Lucida Dental Center welcoming reception and consultation lounge",
+      title: locale === "ar" ? "صالة الاستقبال والاستشارة بالوعب" : "Welcoming Reception & Lounge",
     },
     {
       src: "/images/original/gallery-4.webp",
-      alt: "Mayo Dental Center collection photo 4",
-      title: locale === "ar" ? "معرض المركز — صورة 4" : "Clinic Showcase — Photo 4",
+      alt: "Lucida Dental Center modern dental operatories",
+      title: locale === "ar" ? "تجهيزات تشخيصية ورقمية حديثة" : "Modern Digital Operatories",
     },
     {
       src: "/images/original/gallery-5.webp",
-      alt: "Mayo Dental Center collection photo 5",
-      title: locale === "ar" ? "معرض المركز — صورة 5" : "Clinic Showcase — Photo 5",
+      alt: "Lucida Dental Center comfortable patient care environment",
+      title: locale === "ar" ? "بيئة مريحة وهادئة للمراجعين" : "Tranquil Patient Care Setting",
+    },
+    {
+      src: "/images/generated/hero-clinic-ambiance.webp",
+      alt: "Lucida Dental Center digital diagnostic consultation suite",
+      title: locale === "ar" ? "جناح الاستشارات والتشخيص الرقمي" : "Digital Diagnostic Consultation Suite",
     },
   ];
 
@@ -45,12 +50,12 @@ export function GallerySection() {
     <section className="py-20 sm:py-28 bg-white relative overflow-hidden" id="gallery">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge={locale === "ar" ? "معرضنا" : "Our Collection"}
-          title={locale === "ar" ? "معرض الصور — مركز مايو" : "Our Collection"}
+          badge={locale === "ar" ? "جولة في العيادة" : "Our Facilities"}
+          title={locale === "ar" ? "معرض الصور — مركز لوسيدا لطب الأسنان" : "Clinic Gallery — Lucida Dental Center"}
           subtitle={
             locale === "ar"
-              ? "مجموعة صور من معرض المركز كما وردت في الموقع الأصلي."
-              : "A photographic preview from the clinic's collection."
+              ? "لقطات من داخل عيادتنا ومعايير التعقيم والأجهزة الطبية المتطورة في منطقة الوعب بالدوحة."
+              : "A photographic look inside our modern clinical environments, sterilization standards, and patient comfort in Al Waab, Doha."
           }
         />
 
@@ -102,27 +107,25 @@ export function GallerySection() {
       {/* Lightbox Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-navy-950/90 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-200"
+          className="fixed inset-0 z-50 bg-navy-950/90 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
           <button
+            className="absolute top-6 end-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
             onClick={() => setSelectedImage(null)}
-            className="absolute top-6 end-6 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
-            aria-label="Close Lightbox"
+            aria-label="Close lightbox"
           >
             <X className="w-6 h-6" />
           </button>
-
           <div
-            className="relative max-w-4xl w-full max-h-[85vh] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl"
+            className="relative max-w-4xl max-h-[85vh] w-full h-full rounded-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
               src={selectedImage}
-              alt="Enlarged gallery view"
+              alt="Lucida Dental Center enlarged facility preview"
               fill
               className="object-contain"
-              onError={() => setSelectedImage(null)}
             />
           </div>
         </div>
@@ -130,4 +133,3 @@ export function GallerySection() {
     </section>
   );
 }
-

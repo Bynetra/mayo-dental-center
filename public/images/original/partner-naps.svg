@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" fill="none">
+  <rect width="160" height="48" rx="8" fill="#F8FAFC"/>
+  <rect x="16" y="14" width="24" height="20" rx="4" fill="#8DC63F"/>
+  <path d="M20 22h16M20 26h8" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <text x="48" y="29" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#0E1F2C">NAPS</text>
+</svg>
+
